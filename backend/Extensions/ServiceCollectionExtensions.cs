@@ -72,7 +72,11 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IAccountService, AccountService>();
         services.AddAuthentication("Cookies").AddCookie(o => {
             o.Cookie.Name = "hisab-session";
-            o.Cookie.SameSite = SameSiteMode.Strict;
+            // Cross-site Netlify → API needs None+Secure; local http keeps Lax
+            var isDev = string.Equals(config["ASPNETCORE_ENVIRONMENT"], "Development", StringComparison.OrdinalIgnoreCase)
+                || string.Equals(Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"), "Development", StringComparison.OrdinalIgnoreCase);
+            o.Cookie.SameSite = isDev ? SameSiteMode.Lax : SameSiteMode.None;
+            o.Cookie.SecurePolicy = isDev ? CookieSecurePolicy.SameAsRequest : CookieSecurePolicy.Always;
             o.Events.OnRedirectToLogin = c => { c.Response.StatusCode = 401; return Task.CompletedTask; };
             o.Events.OnRedirectToAccessDenied = c => { c.Response.StatusCode = 403; return Task.CompletedTask; };
         });
@@ -89,7 +93,9 @@ public static class ServiceCollectionExtensions
         services.AddCors(options =>
         {
             options.AddPolicy("AngularDev", policy =>
-                policy.WithOrigins("http://localhost:4200")
+                policy.WithOrigins(
+                        "http://localhost:4200",
+                        "https://hisab-daily.netlify.app")
                     .AllowAnyHeader()
                     .AllowCredentials()
                     .AllowAnyMethod());
