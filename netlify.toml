@@ -1,0 +1,21 @@
+# Milk Hisab — frontend on Netlify
+[build]
+  base = "frontend"
+  command = "npm ci && npm run build"
+  publish = "dist/milk-hisab/browser"
+
+# Angular SPA: all routes → index.html
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Optional API proxy — uncomment and set your hosted API URL when ready
+# [[redirects]]
+#   from = "/api/*"
+#   to = "https://YOUR-API-HOST/api/:splat"
+#   status = 200
+#   force = true
+
+[build.environment]
+  NODE_VERSION = "20"
