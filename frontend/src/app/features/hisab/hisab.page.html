@@ -1,0 +1,66 @@
+<div class="page-head">
+  <div>
+    <h1>Month hisab</h1>
+    <p class="hint">Delivered − paid = due · per customer</p>
+  </div>
+  <div class="filters">
+    <label>Year
+      <input type="number" [ngModel]="svc.year()" (ngModelChange)="svc.setYear($event)" />
+    </label>
+    <label>Month
+      <input type="number" min="1" max="12" [ngModel]="svc.month()" (ngModelChange)="svc.setMonth($event)" />
+    </label>
+  </div>
+</div>
+
+@if (svc.error()) {
+  <p class="err">{{ svc.error() }}</p>
+}
+
+@if (svc.loading() && !svc.summary()) {
+  <p class="muted">Loading…</p>
+} @else if (svc.summary(); as s) {
+  <div class="card-grid" style="margin-bottom: 1rem">
+    <div class="card">
+      <div class="label">Delivered</div>
+      <div class="val">₹ {{ s.totalDelivered | number: '1.2-2' }}</div>
+    </div>
+    <div class="card">
+      <div class="label">Paid</div>
+      <div class="val">₹ {{ s.totalPaid | number: '1.2-2' }}</div>
+    </div>
+    <div class="card due">
+      <div class="label">Due</div>
+      <div class="val">₹ {{ s.totalDue | number: '1.2-2' }}</div>
+    </div>
+  </div>
+
+  @if (s.customers.length === 0) {
+    <div class="card empty">No customer activity for this month.</div>
+  } @else {
+    <div class="table-card">
+      <table class="data">
+        <thead>
+          <tr>
+            <th>Customer</th>
+            <th>Litres</th>
+            <th>Delivered</th>
+            <th>Paid</th>
+            <th>Due</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (c of s.customers; track c.customerId) {
+            <tr>
+              <td>{{ c.customerName }}</td>
+              <td>{{ c.totalLitres | number: '1.1-2' }}</td>
+              <td>₹ {{ c.deliveredAmount | number: '1.2-2' }}</td>
+              <td>₹ {{ c.paidAmount | number: '1.2-2' }}</td>
+              <td>₹ {{ c.dueAmount | number: '1.2-2' }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+}

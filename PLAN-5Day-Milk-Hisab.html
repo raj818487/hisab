@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>5-Day Delivery Plan — Milk Hisab PWA (Full Product)</title>
+  <style>
+    :root {
+      --bg:#f4f1ea; --card:#fff; --ink:#1c1917; --muted:#57534e;
+      --teal:#0f766e; --teal-soft:#ccfbf1; --border:#e7e5e4;
+      --day:#134e4a; --warn:#b45309; --ok:#166534;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:"Segoe UI",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
+    .wrap{max-width:980px;margin:0 auto;padding:28px 18px 64px}
+    .hero{background:linear-gradient(135deg,#0f766e,#115e59 60%,#134e4a);color:#fff;border-radius:16px;padding:26px;margin-bottom:18px}
+    .hero h1{margin:0 0 6px;font-size:1.7rem}
+    .hero p{margin:0;opacity:.93}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+    .chip{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);padding:4px 10px;border-radius:999px;font-size:.82rem}
+    section{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px 22px;margin-bottom:14px}
+    h2{margin:0 0 10px;font-size:1.18rem;color:var(--teal);border-bottom:2px solid var(--teal-soft);padding-bottom:7px}
+    h3{margin:16px 0 8px;font-size:1.02rem}
+    p,li{font-size:.96rem}
+    table{width:100%;border-collapse:collapse;font-size:.9rem;margin:8px 0}
+    th,td{border:1px solid var(--border);padding:8px 9px;text-align:left;vertical-align:top}
+    th{background:#f5f5f4}
+    .day{border-left:5px solid var(--day);padding-left:12px;margin:14px 0}
+    .am{color:var(--ok);font-weight:600}
+    .pm{color:var(--warn);font-weight:600}
+    .ok{background:var(--teal-soft);border-left:4px solid var(--teal);padding:10px 12px;border-radius:0 8px 8px 0;margin:10px 0}
+    .note{background:#fffbeb;border-left:4px solid var(--warn);padding:10px 12px;border-radius:0 8px 8px 0;margin:10px 0;color:#78350f}
+    code{background:#f5f5f4;padding:1px 5px;border-radius:4px;font-size:.86em}
+    .toc ol{margin:0;padding-left:20px}
+    .toc a{color:var(--ink);text-decoration:none}
+    .toc a:hover{color:var(--teal);text-decoration:underline}
+    footer{text-align:center;color:var(--muted);font-size:.84rem;margin-top:8px}
+    @media print{body{background:#fff}.hero{box-shadow:none}section{break-inside:avoid}}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <h1>5-Day Full Product Plan</h1>
+    <p>Milk Hisab PWA — daily take/skip tracking, monthly hisab, payments, DB, installable web app</p>
+    <div class="chips">
+      <span class="chip">Target: 5 days</span>
+      <span class="chip">Scope: Full MVP+extras product</span>
+      <span class="chip">BRD: BRD-Milk-Hisab-PWA.html</span>
+      <span class="chip">AI tooling: D:\Other Project\dev-assistant (omni-plugin)</span>
+      <span class="chip">Folder: D:\Other Project\Milk-Hisab</span>
+    </div>
+  </header>
+
+  <section class="toc">
+    <h2>Contents</h2>
+    <ol>
+      <li><a href="#goal">1. Goal &amp; Definition of Done</a></li>
+      <li><a href="#stack">2. Stack &amp; Architecture</a></li>
+      <li><a href="#devassist">3. Day 0 — Install skills from dev-assistant</a></li>
+      <li><a href="#phases">4. Phase Map (mapped to 5 days)</a></li>
+      <li><a href="#d1">5. Day 1 Plan</a></li>
+      <li><a href="#d2">6. Day 2 Plan</a></li>
+      <li><a href="#d3">7. Day 3 Plan</a></li>
+      <li><a href="#d4">8. Day 4 Plan</a></li>
+      <li><a href="#d5">9. Day 5 Plan</a></li>
+      <li><a href="#skills">10. Which skills to use each day</a></li>
+      <li><a href="#risks">11. Risks &amp; buffers</a></li>
+      <li><a href="#checklist">12. Final launch checklist</a></li>
+    </ol>
+  </section>
+
+  <section id="goal">
+    <h2>1. Goal &amp; Definition of Done (Day 5 evening)</h2>
+    <p>By end of Day 5, a working installable product exists where a user can:</p>
+    <ul>
+      <li>Add customers with default qty + rate</li>
+      <li>Mark each day Taken / Not Taken (qty/rate override + note)</li>
+      <li>See monthly qty, amount, payments, and due balance</li>
+      <li>Record payments (cash/UPI)</li>
+      <li>Export/share monthly statement</li>
+      <li>Install app via PWA manifest on phone</li>
+      <li>Data saved in real DB and survives refresh</li>
+    </ul>
+    <div class="ok"><strong>Full product in 5 days</strong> means MVP + high-value extras (dashboard, export, share text, reminders light, backup). Deep offline sync / multi-user audit can be “stretch” if time remains.</div>
+  </section>
+
+  <section id="stack">
+    <h2>2. Recommended Stack (fast &amp; complete)</h2>
+    <table>
+      <tr><th>Layer</th><th>Choice</th><th>Why for 5-day delivery</th></tr>
+      <tr><td>Frontend</td><td>Angular (standalone) PWA</td><td>You already know Angular; PWA support is solid</td></tr>
+      <tr><td>Backend</td><td>.NET Web API</td><td>Fast CRUD + auth patterns you already use</td></tr>
+      <tr><td>DB</td><td>PostgreSQL (or SQLite if local-only)</td><td>Reliable persistence</td></tr>
+      <tr><td>PWA</td><td><code>manifest.webmanifest</code> + service worker</td><td>Installable “app-like” experience</td></tr>
+      <tr><td>AI assist</td><td>omni-plugin skills from <code>dev-assistant</code></td><td>Safer planning, pattern clone, review gates</td></tr>
+    </table>
+  </section>
+
+  <section id="devassist">
+    <h2>3. Day 0 / Start — Install skills from dev-assistant</h2>
+    <p>Source project: <code>D:\Other Project\dev-assistant</code> (omni-plugin).</p>
+    <h3>Steps (Windows)</h3>
+    <ol>
+      <li>Open PowerShell in <code>D:\Other Project\dev-assistant</code></li>
+      <li>One-time machine install:
+        <pre>powershell -ExecutionPolicy Bypass -File .\install.ps1</pre>
+        Installs/checks Python, uv, graphify, docs deps.
+      </li>
+      <li>Connect into Milk Hisab project:
+        <pre>cd "D:\Other Project\Milk-Hisab"
+# Option A: from Milk-Hisab using local scripts
+powershell -ExecutionPolicy Bypass -File "D:\Other Project\dev-assistant\connect.ps1"
+# When prompted:
+#   Tech stack: Angular + .NET + PostgreSQL
+#   Port: 8765 (or Enter)
+#   Backend for graph: 6 (AST only) for first run — always works offline
+</pre>
+      </li>
+      <li>Or all-in-one (if npm package linked):
+        <pre>cd "D:\Other Project\Milk-Hisab"
+npx --yes "D:\Other Project\dev-assistant"</pre>
+      </li>
+      <li>Verify skills landed:
+        <ul>
+          <li><code>.cursor/rules/</code> (Cursor skills/mdc)</li>
+          <li><code>AGENTS.md</code> / <code>GEMINI.md</code></li>
+          <li><code>.github/instructions/</code> (Copilot)</li>
+          <li><code>graphify-out/</code> after first extract (grows as code appears)</li>
+        </ul>
+      </li>
+      <li>Optional chatbot assist while building:
+        <pre>cd "D:\Other Project\Milk-Hisab"
+npx --yes "file:///D:/Other%20Project/dev-assistant" serve
+# open http://localhost:8765
+</pre>
+      </li>
+    </ol>
+    <div class="note">Skills to lean on hard for this sprint: <code>grill-me</code>, <code>db-design</code>, <code>pattern-clone</code>, <code>development-safety-core</code>, <code>senior-engineer-mindset</code>, <code>code-review-quality</code>, <code>test-agent</code>, <code>regression-guard</code>.</div>
+  </section>
+
+  <section id="phases">
+    <h2>4. Phase Map → 5 Days</h2>
+    <table>
+      <tr><th>Phase</th><th>Day</th><th>Outcome</th></tr>
+      <tr><td>P0 Tooling + skeleton</td><td>Day 1 AM</td><td>Repo scaffold + skills + DB + empty PWA shell</td></tr>
+      <tr><td>P1 Masters</td><td>Day 1 PM–Day 2 AM</td><td>Customers CRUD live</td></tr>
+      <tr><td>P2 Daily log</td><td>Day 2</td><td>Calendar take/skip with save</td></tr>
+      <tr><td>P3 Monthly hisab + payments</td><td>Day 3</td><td>Totals + due + payment ledger</td></tr>
+      <tr><td>P4 PWA + export + dashboard</td><td>Day 4</td><td>Installable app + statement share/export</td></tr>
+      <tr><td>P5 Hardening + launch</td><td>Day 5</td><td>Tests, polish, backup, docs, release</td></tr>
+    </table>
+  </section>
+
+  <section id="d1">
+    <h2>5. Day 1 — Foundation (Tooling, Schema, Shell)</h2>
+    <div class="day">
+      <h3><span class="am">Morning (3–4h)</span> — Setup</h3>
+      <ul>
+        <li>Run <code>install.ps1</code> + <code>connect.ps1</code> from/for Milk-Hisab (skills + graphify wiring)</li>
+        <li>Create solution structure:
+          <ul>
+            <li><code>backend/</code> .NET Web API</li>
+            <li><code>frontend/</code> Angular app with PWA schematic</li>
+            <li><code>docs/</code> keep BRD + this plan</li>
+          </ul>
+        </li>
+        <li>Use <code>grill-me</code> + BRD to lock: home-use vs multi-customer seller mode (default: multi-customer ready, start with 1–N customers)</li>
+        <li>Use <code>db-design</code> skill: finalize tables <code>users</code>, <code>customers</code>, <code>daily_entries</code>, <code>payments</code>, <code>month_closings</code></li>
+      </ul>
+      <h3><span class="pm">Afternoon (4–5h)</span> — Skeleton working</h3>
+      <ul>
+        <li>EF Core migrations + seed admin/PIN user</li>
+        <li>API health endpoint + CORS</li>
+        <li>Angular shell: layout, routing stubs (Dashboard, Customers, Daily, Hisab, Payments, Settings)</li>
+        <li>Add <code>manifest.webmanifest</code> + icons placeholders + basic service worker</li>
+        <li>Commit: “Day1 foundation”</li>
+      </ul>
+      <p><strong>Day 1 Done when:</strong> API runs, UI opens, DB migrates, PWA manifest validates, skills installed.</p>
+    </div>
+  </section>
+
+  <section id="d2">
+    <h2>6. Day 2 — Customers + Daily Entry (Core Loop)</h2>
+    <div class="day">
+      <h3><span class="am">Morning</span></h3>
+      <ul>
+        <li>Customers API: list/create/update/status</li>
+        <li>Customers UI: table + dialog (name, phone, default qty, default rate)</li>
+        <li>Clone patterns via <code>pattern-clone</code> (keep UI consistent)</li>
+      </ul>
+      <h3><span class="pm">Afternoon</span></h3>
+      <ul>
+        <li>Daily entries API: get month grid, upsert day (taken/skipped, qty, rate, note)</li>
+        <li>Daily Calendar UI: month navigator, color states, day editor sheet</li>
+        <li>Validation: no negative qty; skipped clears amount; overrides allowed</li>
+        <li>Quick action: “Mark today Taken” from dashboard stub</li>
+      </ul>
+      <p><strong>Day 2 Done when:</strong> you can create a customer and mark days; refresh keeps data.</p>
+    </div>
+  </section>
+
+  <section id="d3">
+    <h2>7. Day 3 — Monthly Hisab + Payments (Money Truth)</h2>
+    <div class="day">
+      <h3><span class="am">Morning</span></h3>
+      <ul>
+        <li>Hisab compute endpoint: days taken, total qty, month amount, opening due, adjustments</li>
+        <li>Hisab UI: month summary cards + day breakdown table</li>
+        <li>Business rules from BRD implemented exactly</li>
+      </ul>
+      <h3><span class="pm">Afternoon</span></h3>
+      <ul>
+        <li>Payments API + UI (amount, date, mode, note)</li>
+        <li>Net due = opening + month + extras − discounts − payments</li>
+        <li>Optional month lock (close month)</li>
+        <li>Unit/integration tests for calculation edge cases (<code>test-agent</code>)</li>
+      </ul>
+      <p><strong>Day 3 Done when:</strong> sample month math matches BRD example; payments reduce due correctly.</p>
+    </div>
+  </section>
+
+  <section id="d4">
+    <h2>8. Day 4 — PWA Product Feel + Extras</h2>
+    <div class="day">
+      <h3><span class="am">Morning</span></h3>
+      <ul>
+        <li>Polish PWA: real icons, theme color, standalone display, install prompt notes</li>
+        <li>Dashboard: pending marks, unpaid dues, quick mark</li>
+        <li>Settings: morning/evening slot toggle (if enabled), PIN lock basic</li>
+      </ul>
+      <h3><span class="pm">Afternoon</span></h3>
+      <ul>
+        <li>Export monthly statement CSV + printable PDF/HTML</li>
+        <li>WhatsApp share text generator (copy/share sheet)</li>
+        <li>Backup export JSON</li>
+        <li>Light reminders: banner if yesterday unmarked</li>
+        <li>Run <code>code-review-quality</code> + fix critical issues</li>
+      </ul>
+      <p><strong>Day 4 Done when:</strong> app is installable on Android Chrome and statement can be shared/exported.</p>
+    </div>
+  </section>
+
+  <section id="d5">
+    <h2>9. Day 5 — Hardening, QA, Launch</h2>
+    <div class="day">
+      <h3><span class="am">Morning</span></h3>
+      <ul>
+        <li>End-to-end test script (manual + automated smoke)</li>
+        <li>Fix bugs from Day 2–4</li>
+        <li>Seed demo data for showcase</li>
+        <li>Security pass: auth on all write APIs, no open DB</li>
+      </ul>
+      <h3><span class="pm">Afternoon</span></h3>
+      <ul>
+        <li>README: how to run, how to install PWA, how hisab works</li>
+        <li>Update graphify (<code>graphify extract . --code-only</code>)</li>
+        <li>Release build (frontend prod + API publish)</li>
+        <li>Stretch if time: second product line (curd) OR offline queue v1</li>
+        <li>Final demo checklist walkthrough</li>
+      </ul>
+      <p><strong>Day 5 Done when:</strong> fresh machine can run app, install PWA, complete one full month hisab flow without errors.</p>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2>10. Skills usage map (from dev-assistant)</h2>
+    <table>
+      <tr><th>Skill</th><th>When</th></tr>
+      <tr><td><code>grill-me</code></td><td>Day 1 — lock requirements / edge cases before coding</td></tr>
+      <tr><td><code>db-design</code></td><td>Day 1 — schema, indexes, migrations</td></tr>
+      <tr><td><code>context-loader</code></td><td>Every day start — load project rules before edits</td></tr>
+      <tr><td><code>pattern-clone</code></td><td>Days 2–3 — clone list/dialog/API patterns</td></tr>
+      <tr><td><code>development-safety-core</code></td><td>All days — impact + no reckless refactors</td></tr>
+      <tr><td><code>senior-engineer-mindset</code></td><td>All days — minimal surgical scope</td></tr>
+      <tr><td><code>live-context-verifier</code></td><td>Before non-trivial changes — check graph/context</td></tr>
+      <tr><td><code>regression-guard</code></td><td>Days 3–5 — protect hisab calculation contracts</td></tr>
+      <tr><td><code>code-review-quality</code></td><td>Day 4–5 — gate before calling done</td></tr>
+      <tr><td><code>test-agent</code></td><td>Day 3 &amp; 5 — acceptance matrix</td></tr>
+    </table>
+  </section>
+
+  <section id="risks">
+    <h2>11. Risks &amp; buffers</h2>
+    <ul>
+      <li><strong>Scope creep:</strong> if behind after Day 2, freeze extras (charts, multi-product, deep offline)</li>
+      <li><strong>Hisab disputes:</strong> keep day-level audit fields (updatedAt) even in MVP</li>
+      <li><strong>PWA HTTPS:</strong> local can use localhost; phone install needs LAN HTTPS or deployed URL</li>
+      <li><strong>Buffer:</strong> keep 20% of Day 5 only for bugfix — do not start new features after Day 5 noon</li>
+    </ul>
+  </section>
+
+  <section id="checklist">
+    <h2>12. Final launch checklist</h2>
+    <ul>
+      <li>[ ] Skills installed from dev-assistant into Milk-Hisab</li>
+      <li>[ ] DB migrations apply clean on fresh DB</li>
+      <li>[ ] Customer create/edit works</li>
+      <li>[ ] Daily take/skip persists</li>
+      <li>[ ] Monthly amount matches manual calc</li>
+      <li>[ ] Payment updates due</li>
+      <li>[ ] Export/share works</li>
+      <li>[ ] Manifest installs on phone/desktop</li>
+      <li>[ ] README run steps verified</li>
+      <li>[ ] Demo data ready</li>
+    </ul>
+    <div class="ok">After this plan is approved, next action is execute Day 1 setup (skills connect + scaffold) immediately.</div>
+  </section>
+
+  <footer>Milk Hisab — 5-Day Full Product Plan v1.0 · Use with BRD-Milk-Hisab-PWA.html</footer>
+</div>
+</body>
+</html>

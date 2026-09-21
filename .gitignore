@@ -1,0 +1,27 @@
+.verification/
+**/keys/
+**/bin/
+**/obj/
+**/node_modules/
+**/dist/
+**/*.db
+**/*.db-wal
+**/*.db-shm
+
+backend/appsettings.Secrets.json
+
+.vs/
+*.user
+
+
+# Windows device junk
+NUL
+**/NUL
+
+
+# Windows reserved device names (from bad redirects)
+**/NUL
+**/NUL.*
+frontend/NUL
+frontend/NUL.*
+

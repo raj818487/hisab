@@ -1,0 +1,23 @@
+.layout-2 {
+  display: grid;
+  grid-template-columns: minmax(260px, 380px) 1fr;
+  gap: 1.25rem;
+  align-items: start;
+}
+.form {
+  display: grid;
+  gap: 0.85rem;
+}
+.form h2,
+.card h2 {
+  margin: 0 0 0.25rem;
+  font-size: 1.05rem;
+}
+.table-wrap {
+  overflow: auto;
+}
+@media (max-width: 900px) {
+  .layout-2 {
+    grid-template-columns: 1fr;
+  }
+}

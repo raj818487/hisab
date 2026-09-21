@@ -1,0 +1,55 @@
+<div class="actions noprint">
+  <a routerLink="/payments">← Payments</a>
+  <button type="button" class="btn" (click)="download()">Download HTML</button>
+  <button type="button" class="btn secondary" (click)="print()">Print / PDF</button>
+</div>
+
+@if (svc.loading()) {
+  <p>Loading receipt…</p>
+} @else if (svc.receipt(); as r) {
+  <article class="card" id="receipt">
+    <h1>Milk Hisab — Payment Receipt</h1>
+    <p class="muted">Manual payment record (no online gateway)</p>
+    <p><strong>Receipt #</strong> {{ r.receiptNumber }}</p>
+    <p class="amount">₹ {{ r.amount | number: '1.2-2' }}</p>
+    <table>
+      <tr>
+        <th>Customer</th>
+        <td>{{ r.customerName }}</td>
+      </tr>
+      @if (r.customerPhone) {
+        <tr>
+          <th>Phone</th>
+          <td>{{ r.customerPhone }}</td>
+        </tr>
+      }
+      <tr>
+        <th>Paid on</th>
+        <td>{{ r.paidOn }}</td>
+      </tr>
+      <tr>
+        <th>Mode</th>
+        <td>{{ modeLabel(r.mode) }}</td>
+      </tr>
+      @if (r.note) {
+        <tr>
+          <th>Note</th>
+          <td>{{ r.note }}</td>
+        </tr>
+      }
+      <tr>
+        <th>Month {{ r.month }}/{{ r.year }}</th>
+        <td>
+          Delivered ₹{{ r.monthDelivered | number: '1.2-2' }} · Paid ₹{{
+            r.monthPaid | number: '1.2-2'
+          }}
+          · Due ₹{{ r.monthDue | number: '1.2-2' }}
+        </td>
+      </tr>
+    </table>
+  </article>
+} @else if (svc.error()) {
+  <p class="err">{{ svc.error() }}</p>
+} @else {
+  <p class="empty">No receipt to show.</p>
+}

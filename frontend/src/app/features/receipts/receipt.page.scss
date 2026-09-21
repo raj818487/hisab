@@ -1,0 +1,86 @@
+.actions {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.actions a {
+  color: #0f766e;
+}
+
+.btn {
+  background: #0f766e;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 0.9rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn.secondary {
+  background: #134e4a;
+}
+
+.card {
+  max-width: 640px;
+  border: 1px solid #99f6e4;
+  border-radius: 12px;
+  padding: 1.5rem;
+  background: #f0fdfa;
+}
+
+h1 {
+  color: #0f766e;
+  margin: 0 0 0.25rem;
+  font-size: 1.35rem;
+}
+
+.muted {
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+.amount {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #0f766e;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 0.5rem 0.25rem;
+  border-bottom: 1px solid #ccfbf1;
+}
+
+th {
+  width: 140px;
+  color: #475569;
+}
+
+.err {
+  color: #b91c1c;
+}
+
+.empty {
+  color: #64748b;
+}
+
+@media print {
+  .noprint {
+    display: none !important;
+  }
+
+  .card {
+    border: none;
+    background: #fff;
+  }
+}

@@ -1,0 +1,116 @@
+.shell {
+  min-height: 100vh;
+  display: flex;
+  align-items: stretch;
+  background: var(--mh-bg, #f6f9fc);
+}
+.sidebar {
+  width: 200px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.75rem 0.6rem 1rem;
+  background: var(--mh-surface, #fff);
+  border-right: 1px solid var(--mh-border, #e6ebf1);
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  z-index: 40;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--mh-navy, #0a2540) !important;
+  letter-spacing: -0.03em;
+  padding: 0.2rem 0.45rem 0.65rem;
+  text-decoration: none;
+}
+.brand-mark {
+  display: inline-grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 7px;
+  background: var(--mh-purple, #635bff);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  flex: 1;
+}
+.sidebar nav a {
+  color: var(--mh-body, #425466);
+  padding: 0.45rem 0.65rem;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+.sidebar nav a:hover {
+  background: #eef2ff;
+  color: var(--mh-purple, #635bff);
+}
+.sidebar nav a.active {
+  background: #eef2ff;
+  color: var(--mh-purple, #635bff);
+  font-weight: 650;
+}
+.side-note {
+  margin: 0.75rem 0.45rem 0;
+  font-size: 0.72rem;
+  color: #8898aa;
+  line-height: 1.35;
+}
+.shell-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+:host ::ng-deep .content,
+.shell-main > .content {
+  flex: 1;
+  width: min(1100px, 100%);
+  margin: 0;
+  padding: 0.75rem 0.85rem 1.25rem !important;
+}
+.foot {
+  text-align: center;
+  padding: 0.55rem 0.85rem;
+  color: var(--mh-body, #425466);
+  font-size: 0.75rem;
+  border-top: 1px solid var(--mh-border, #e6ebf1);
+  background: var(--mh-surface, #fff);
+}
+.foot span { color: #8898aa; }
+@media (max-width: 800px) {
+  .shell { flex-direction: column; }
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    border-right: 0;
+    border-bottom: 1px solid var(--mh-border, #e6ebf1);
+    padding: 0.55rem 0.65rem;
+  }
+  .sidebar nav {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 0.15rem;
+  }
+  .sidebar nav a { white-space: nowrap; padding: 0.4rem 0.6rem; font-size: 0.82rem; }
+  .side-note { display: none; }
+  .brand { padding: 0.15rem 0.25rem 0.45rem; }
+  .shell-main > .content { padding: 0.65rem 0.65rem 1rem !important; }
+}
+.topbar { display: none !important; }

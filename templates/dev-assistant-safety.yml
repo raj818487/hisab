@@ -1,0 +1,26 @@
+﻿name: Dev Assistant Safety
+
+on:
+  pull_request:
+  push:
+    branches: [main, master]
+
+permissions:
+  contents: read
+
+jobs:
+  safety:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Install Graphify
+        run: pip install graphifyy
+      - name: Run development safety checks
+        run: python .claude/skills/development-safety-core/scripts/change_safety.py hook --mode ci
+

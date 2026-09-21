@@ -1,0 +1,212 @@
+{
+  "MilkHisab.slnx": {
+    "mtime": 1789968146.134022,
+    "seen": 1789968210.259271,
+    "ast_hash": "7fa6f9aba6370fbb38bab1e512e35d33",
+    "semantic_hash": "7fa6f9aba6370fbb38bab1e512e35d33"
+  },
+  "backend/Controllers/WeatherForecastController.cs": {
+    "mtime": 1789967865.2600033,
+    "seen": 1789968210.2592769,
+    "ast_hash": "5c846a5c9ccfbbaee258268f1617f135",
+    "semantic_hash": "5c846a5c9ccfbbaee258268f1617f135"
+  },
+  "backend/Data/AppDbContext.cs": {
+    "mtime": 1789967881.9061887,
+    "seen": 1789968210.2592797,
+    "ast_hash": "e4af1a15a6625a0492dc10106855d74a",
+    "semantic_hash": "e4af1a15a6625a0492dc10106855d74a"
+  },
+  "backend/MilkHisab.Api.csproj": {
+    "mtime": 1789967865.294069,
+    "seen": 1789968210.2592814,
+    "ast_hash": "93360e6cf35c135c66dea9a091351643",
+    "semantic_hash": "93360e6cf35c135c66dea9a091351643"
+  },
+  "backend/Program.cs": {
+    "mtime": 1789967865.3088112,
+    "seen": 1789968210.2592833,
+    "ast_hash": "354c227093827c088aeda3ffb465e79c",
+    "semantic_hash": "354c227093827c088aeda3ffb465e79c"
+  },
+  "backend/Properties/launchSettings.json": {
+    "mtime": 1789967881.909188,
+    "seen": 1789968210.259285,
+    "ast_hash": "00612ba967cfd3a0621e716a6ab28301",
+    "semantic_hash": "00612ba967cfd3a0621e716a6ab28301"
+  },
+  "backend/Services/IHealthService.cs": {
+    "mtime": 1789967881.9071867,
+    "seen": 1789968210.2592866,
+    "ast_hash": "23f6a6108f38c524387c61e9bb3c3280",
+    "semantic_hash": "23f6a6108f38c524387c61e9bb3c3280"
+  },
+  "backend/WeatherForecast.cs": {
+    "mtime": 1789967865.3098562,
+    "seen": 1789968210.2592883,
+    "ast_hash": "dc53e7107d4e02e5b489056013ae3d4f",
+    "semantic_hash": "dc53e7107d4e02e5b489056013ae3d4f"
+  },
+  "backend/appsettings.Development.json": {
+    "mtime": 1789967865.2650056,
+    "seen": 1789968210.2592897,
+    "ast_hash": "804b473502a4c415cf75db61c56c32aa",
+    "semantic_hash": "804b473502a4c415cf75db61c56c32aa"
+  },
+  "backend/appsettings.json": {
+    "mtime": 1789967865.268006,
+    "seen": 1789968210.2592914,
+    "ast_hash": "f7e65dde4e5533740a0d57ac9355c0e8",
+    "semantic_hash": "f7e65dde4e5533740a0d57ac9355c0e8"
+  },
+  "backend/obj/MilkHisab.Api.csproj.nuget.dgspec.json": {
+    "mtime": 1789967881.5787468,
+    "seen": 1789968210.259293,
+    "ast_hash": "7033b16cdde2542d2f6cc63fa092dd22",
+    "semantic_hash": "7033b16cdde2542d2f6cc63fa092dd22"
+  },
+  "backend/obj/project.assets.json": {
+    "mtime": 1789967881.541856,
+    "seen": 1789968210.259295,
+    "ast_hash": "2aa6c08ee489c8acf0b1f663cdee2409",
+    "semantic_hash": "2aa6c08ee489c8acf0b1f663cdee2409"
+  },
+  "dev-assistant.json": {
+    "mtime": 1789967863.0168016,
+    "seen": 1789968210.2592967,
+    "ast_hash": "48b2de429c91ba381b0629e2d3c9db71",
+    "semantic_hash": "48b2de429c91ba381b0629e2d3c9db71"
+  },
+  "frontend/.vscode/extensions.json": {
+    "mtime": 1789967942.383235,
+    "seen": 1789968210.2592983,
+    "ast_hash": "66fd9e60d4633b6099fe02e06a7075ea",
+    "semantic_hash": "66fd9e60d4633b6099fe02e06a7075ea"
+  },
+  "frontend/.vscode/launch.json": {
+    "mtime": 1789967942.3847427,
+    "seen": 1789968210.2593,
+    "ast_hash": "430386a2f03e9d559664c196344c121b",
+    "semantic_hash": "430386a2f03e9d559664c196344c121b"
+  },
+  "frontend/.vscode/tasks.json": {
+    "mtime": 1789967942.3847427,
+    "seen": 1789968210.259302,
+    "ast_hash": "d2fc2624d783980be281b4cf0acc2455",
+    "semantic_hash": "d2fc2624d783980be281b4cf0acc2455"
+  },
+  "frontend/angular.json": {
+    "mtime": 1789968082.4567673,
+    "seen": 1789968210.2593036,
+    "ast_hash": "b201904b36312b05e6a7c8c2fadebfea",
+    "semantic_hash": "b201904b36312b05e6a7c8c2fadebfea"
+  },
+  "frontend/ngsw-config.json": {
+    "mtime": 1789968082.4541757,
+    "seen": 1789968210.2593055,
+    "ast_hash": "699a1eb0df578d4fdffe23cf84013b07",
+    "semantic_hash": "699a1eb0df578d4fdffe23cf84013b07"
+  },
+  "frontend/package.json": {
+    "mtime": 1789968082.4567673,
+    "seen": 1789968210.259307,
+    "ast_hash": "348a0ca7c958144e494ede0f3d2bb1b0",
+    "semantic_hash": "348a0ca7c958144e494ede0f3d2bb1b0"
+  },
+  "frontend/src/app/app.config.ts": {
+    "mtime": 1789968082.4619896,
+    "seen": 1789968210.2593088,
+    "ast_hash": "c77a842223238560f666ce5e15ee525c",
+    "semantic_hash": "c77a842223238560f666ce5e15ee525c"
+  },
+  "frontend/src/app/app.routes.ts": {
+    "mtime": 1789967942.4103222,
+    "seen": 1789968210.2593102,
+    "ast_hash": "41e4bac7a1d7cd48f4d03907407942d3",
+    "semantic_hash": "41e4bac7a1d7cd48f4d03907407942d3"
+  },
+  "frontend/src/app/app.spec.ts": {
+    "mtime": 1789967942.3993337,
+    "seen": 1789968210.2593122,
+    "ast_hash": "2f43cd6f12a3f5a30bbe7c7c52b2d502",
+    "semantic_hash": "2f43cd6f12a3f5a30bbe7c7c52b2d502"
+  },
+  "frontend/src/app/app.ts": {
+    "mtime": 1789967942.3993337,
+    "seen": 1789968210.2593136,
+    "ast_hash": "5464de007ab510fcd04cc50afb3eb387",
+    "semantic_hash": "5464de007ab510fcd04cc50afb3eb387"
+  },
+  "frontend/src/main.ts": {
+    "mtime": 1789967942.3910706,
+    "seen": 1789968210.259315,
+    "ast_hash": "1289536d6d8f94242a4ffc598d094633",
+    "semantic_hash": "1289536d6d8f94242a4ffc598d094633"
+  },
+  "frontend/tsconfig.app.json": {
+    "mtime": 1789967942.3812263,
+    "seen": 1789968210.2593164,
+    "ast_hash": "f0ed6c81d0a374939052cff4567f713f",
+    "semantic_hash": "f0ed6c81d0a374939052cff4567f713f"
+  },
+  "frontend/tsconfig.json": {
+    "mtime": 1789967942.3760414,
+    "seen": 1789968210.2593179,
+    "ast_hash": "481934fa92ea3deadda691e7aa66ff31",
+    "semantic_hash": "481934fa92ea3deadda691e7aa66ff31"
+  },
+  "frontend/tsconfig.spec.json": {
+    "mtime": 1789967942.3822353,
+    "seen": 1789968210.259319,
+    "ast_hash": "09ccc14eae54035b93ae8f1768ca2506",
+    "semantic_hash": "09ccc14eae54035b93ae8f1768ca2506"
+  },
+  "setup-milk-hisab.ps1": {
+    "mtime": 1789967737.7844338,
+    "seen": 1789968210.2593203,
+    "ast_hash": "88be503887a708f6c82403cd785d25b5",
+    "semantic_hash": "88be503887a708f6c82403cd785d25b5"
+  },
+  "setup-report.json": {
+    "mtime": 1789968088.3477426,
+    "seen": 1789968210.259322,
+    "ast_hash": "471b55dd22ed173b74997cd7f916d8b0",
+    "semantic_hash": "471b55dd22ed173b74997cd7f916d8b0"
+  },
+  "setup-v2.ps1": {
+    "mtime": 1789967847.2011397,
+    "seen": 1789968210.2593234,
+    "ast_hash": "d663b7791bc0622685f800a3e03abcd3",
+    "semantic_hash": "d663b7791bc0622685f800a3e03abcd3"
+  },
+  "skills/development-safety-core/scripts/change_safety.py": {
+    "mtime": 1786260242.20685,
+    "seen": 1789968210.2593248,
+    "ast_hash": "6bf0d7bb89b03921fd6ba9252cc2d1fd",
+    "semantic_hash": "6bf0d7bb89b03921fd6ba9252cc2d1fd"
+  },
+  "skills/development-safety-core/scripts/impact_analysis.py": {
+    "mtime": 1786260242.2033248,
+    "seen": 1789968210.259326,
+    "ast_hash": "3da4969cf610c2fbf6b47c81c25e7c82",
+    "semantic_hash": "3da4969cf610c2fbf6b47c81c25e7c82"
+  },
+  "skills/grill-me/evals/evals.json": {
+    "mtime": 1783418427.8111982,
+    "seen": 1789968210.2593274,
+    "ast_hash": "cf00a452c116d405ae07a55a307f6283",
+    "semantic_hash": "cf00a452c116d405ae07a55a307f6283"
+  },
+  "workflows/feature-docs.js": {
+    "mtime": 1783417842.6230006,
+    "seen": 1789968210.2593293,
+    "ast_hash": "3e2e07ad8f3ba4c89f52e69bab5adf77",
+    "semantic_hash": "3e2e07ad8f3ba4c89f52e69bab5adf77"
+  },
+  "workflows/update-project-memory.js": {
+    "mtime": 1782654007.2171683,
+    "seen": 1789968210.2593307,
+    "ast_hash": "5eb18a7555d669458709ee3f800ea272",
+    "semantic_hash": "5eb18a7555d669458709ee3f800ea272"
+  }
+}

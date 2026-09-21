@@ -1,0 +1,66 @@
+<div class="page-head">
+  <div>
+    <h1>Customers</h1>
+    <p class="hint">Delivery customers · default rate · active / inactive</p>
+  </div>
+  <a routerLink="/customers/new" class="btn">+ New customer</a>
+</div>
+
+@if (svc.error()) {
+  <p class="err">{{ svc.error() }}</p>
+}
+
+<div class="toolbar">
+  <input
+    class="search"
+    type="search"
+    placeholder="Search name, phone, address…"
+    [ngModel]="q()"
+    (ngModelChange)="onSearch($event)"
+  />
+  <span class="muted">{{ filtered().length }} found</span>
+</div>
+
+@if (svc.loading() && svc.customers().length === 0) {
+  <p class="muted">Loading…</p>
+} @else if (filtered().length === 0) {
+  <div class="card empty">No customers match. Add your first delivery customer.</div>
+} @else {
+  <div class="table-card">
+    <table class="data">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Phone</th>
+          <th>Rate</th>
+          <th>Status</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (c of pageItems(); track c.id) {
+          <tr>
+            <td>{{ c.name }}</td>
+            <td>{{ c.phone || '—' }}</td>
+            <td>₹ {{ c.defaultRate | number: '1.2-2' }}</td>
+            <td>
+              <span class="badge" [class.ok]="c.isActive" [class.off]="!c.isActive">
+                {{ c.isActive ? 'Active' : 'Inactive' }}
+              </span>
+            </td>
+            <td><a [routerLink]="['/customers', c.id]">Edit</a></td>
+          </tr>
+        }
+      </tbody>
+    </table>
+    <div class="pager">
+      <span>
+        Page {{ page() }} / {{ totalPages() }}
+      </span>
+      <div class="pages">
+        <button type="button" (click)="go(page() - 1)" [disabled]="page() <= 1">Prev</button>
+        <button type="button" (click)="go(page() + 1)" [disabled]="page() >= totalPages()">Next</button>
+      </div>
+    </div>
+  </div>
+}

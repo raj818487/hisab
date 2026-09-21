@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BRD — Daily Milk Hisab PWA</title>
+  <style>
+    :root {
+      --bg: #f7f4ef;
+      --card: #ffffff;
+      --ink: #1c1917;
+      --muted: #57534e;
+      --accent: #0f766e;
+      --accent-soft: #ccfbf1;
+      --border: #e7e5e4;
+      --warn: #b45309;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.55;
+    }
+    .wrap { max-width: 920px; margin: 0 auto; padding: 32px 20px 64px; }
+    header.hero {
+      background: linear-gradient(135deg, #0f766e, #115e59 55%, #134e4a);
+      color: #fff;
+      border-radius: 16px;
+      padding: 28px 28px 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 10px 30px rgba(15, 118, 110, 0.25);
+    }
+    header.hero h1 { margin: 0 0 8px; font-size: 1.75rem; }
+    header.hero p { margin: 0; opacity: 0.92; }
+    .meta {
+      display: flex; flex-wrap: wrap; gap: 10px;
+      margin-top: 16px;
+    }
+    .chip {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.25);
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+    }
+    nav.toc {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-bottom: 24px;
+    }
+    nav.toc h2 { margin: 0 0 10px; font-size: 1rem; color: var(--accent); }
+    nav.toc ol { margin: 0; padding-left: 20px; }
+    nav.toc a { color: var(--ink); text-decoration: none; }
+    nav.toc a:hover { color: var(--accent); text-decoration: underline; }
+    section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 22px 24px;
+      margin-bottom: 16px;
+    }
+    section h2 {
+      margin: 0 0 12px;
+      font-size: 1.2rem;
+      color: var(--accent);
+      border-bottom: 2px solid var(--accent-soft);
+      padding-bottom: 8px;
+    }
+    section h3 { margin: 18px 0 8px; font-size: 1.02rem; }
+    p { margin: 0 0 10px; color: var(--ink); }
+    ul, ol { margin: 0 0 10px; padding-left: 22px; }
+    li { margin-bottom: 6px; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.92rem;
+      margin: 10px 0 6px;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 8px 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: #f5f5f4; }
+    .note {
+      background: #fffbeb;
+      border-left: 4px solid var(--warn);
+      padding: 10px 12px;
+      border-radius: 0 8px 8px 0;
+      color: #78350f;
+      margin: 12px 0;
+      font-size: 0.92rem;
+    }
+    .ok {
+      background: var(--accent-soft);
+      border-left: 4px solid var(--accent);
+      padding: 10px 12px;
+      border-radius: 0 8px 8px 0;
+      margin: 12px 0;
+      font-size: 0.92rem;
+    }
+    code {
+      background: #f5f5f4;
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-size: 0.88em;
+    }
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-top: 8px;
+    }
+    @media print {
+      body { background: #fff; }
+      .wrap { padding: 0; max-width: none; }
+      header.hero { box-shadow: none; }
+      section, nav.toc { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="hero">
+      <h1>Business Requirements Document (BRD)</h1>
+      <p>Daily Milk Delivery Tracker &amp; Monthly Hisab Web Application (PWA)</p>
+      <div class="meta">
+        <span class="chip">Version 1.0</span>
+        <span class="chip">Status: Draft for Approval</span>
+        <span class="chip">Date: 21 Sep 2026</span>
+        <span class="chip">Type: Small Web App + Manifest (PWA) + Database</span>
+      </div>
+    </header>
+
+    <nav class="toc">
+      <h2>Contents</h2>
+      <ol>
+        <li><a href="#s1">1. Purpose &amp; Vision</a></li>
+        <li><a href="#s2">2. Problem Statement</a></li>
+        <li><a href="#s3">3. Goals &amp; Success Criteria</a></li>
+        <li><a href="#s4">4. Users &amp; Roles</a></li>
+        <li><a href="#s5">5. Scope</a></li>
+        <li><a href="#s6">6. Functional Requirements (Features)</a></li>
+        <li><a href="#s7">7. Monthly Hisab Rules</a></li>
+        <li><a href="#s8">8. Non-Functional Requirements</a></li>
+        <li><a href="#s9">9. PWA / Manifest Requirements</a></li>
+        <li><a href="#s10">10. Data Model (High Level)</a></li>
+        <li><a href="#s11">11. Screens / UI Flow</a></li>
+        <li><a href="#s12">12. Tech Approach (Recommended)</a></li>
+        <li><a href="#s13">13. Phases (MVP → Extra Features)</a></li>
+        <li><a href="#s14">14. Assumptions, Risks, Open Questions</a></li>
+        <li><a href="#s15">15. Acceptance Criteria</a></li>
+      </ol>
+    </nav>
+
+    <section id="s1">
+      <h2>1. Purpose &amp; Vision</h2>
+      <p>
+        Build a small, easy-to-use <strong>website application</strong> that helps a household or small milk business
+        track <strong>daily milk taken / not taken</strong>, calculate <strong>monthly payable amount (hisab)</strong>,
+        save everything in a <strong>database</strong>, and use a clean <strong>UI</strong> for day-to-day entry.
+      </p>
+      <p>
+        The app must be installable like a mobile app using a <strong>Web App Manifest</strong> (PWA),
+        so it can open from the home screen, work reliably on phone, and optionally support offline entry.
+      </p>
+      <div class="ok">
+        <strong>Vision one-liner:</strong> “Mark milk each day in 2 taps → get clear monthly hisab with payments, history, and reminders.”
+      </div>
+    </section>
+
+    <section id="s2">
+      <h2>2. Problem Statement</h2>
+      <p>Today, milk delivery hisab is often done on paper, WhatsApp notes, or memory. That causes:</p>
+      <ul>
+        <li>Missed days not recorded correctly (took / not took confusion)</li>
+        <li>Wrong monthly total when rate or quantity changes mid-month</li>
+        <li>No clear record of advance / partial payments</li>
+        <li>Hard to share clean monthly bill with customer or supplier</li>
+        <li>No history for previous months</li>
+      </ul>
+      <p>The product must replace paper hisab with a simple digital system that is still faster than writing by hand.</p>
+    </section>
+
+    <section id="s3">
+      <h2>3. Goals &amp; Success Criteria</h2>
+      <h3>Business goals</h3>
+      <ul>
+        <li>Accurate daily tracking of milk delivery / consumption</li>
+        <li>Automatic monthly payable calculation</li>
+        <li>Payment recording and due balance visibility</li>
+        <li>Usable by non-technical users on mobile</li>
+      </ul>
+      <h3>Success criteria (MVP)</h3>
+      <ul>
+        <li>User can create customer/supplier and set default daily qty + rate</li>
+        <li>User can mark each calendar day as Taken / Not Taken (with optional qty override)</li>
+        <li>System calculates month total correctly</li>
+        <li>User can record payment and see remaining due</li>
+        <li>App installs via manifest (Add to Home Screen) on Android Chrome</li>
+        <li>All entries persist in database and survive refresh/reopen</li>
+      </ul>
+    </section>
+
+    <section id="s4">
+      <h2>4. Users &amp; Roles</h2>
+      <table>
+        <thead>
+          <tr><th>Role</th><th>Who</th><th>Main needs</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Owner / Hisab Manager</strong></td>
+            <td>House person or small dairy owner</td>
+            <td>Daily mark, monthly hisab, payments, reports</td>
+          </tr>
+          <tr>
+            <td><strong>Customer / Buyer</strong> (optional later)</td>
+            <td>Person receiving milk</td>
+            <td>View monthly bill (read-only share link)</td>
+          </tr>
+          <tr>
+            <td><strong>Admin</strong> (optional later)</td>
+            <td>Same as owner for v1</td>
+            <td>Backup, settings, users</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="note">For MVP, single-user login (PIN or simple password) is enough. Multi-user comes in Phase 2.</div>
+    </section>
+
+    <section id="s5">
+      <h2>5. Scope</h2>
+      <h3>In scope (MVP + recommended extras)</h3>
+      <ul>
+        <li>Customer/supplier master</li>
+        <li>Daily delivery log (taken / not taken, quantity, rate, notes)</li>
+        <li>Monthly hisab summary and statement</li>
+        <li>Payments (advance, partial, full)</li>
+        <li>PWA install (manifest + icons + service worker basic)</li>
+        <li>Database persistence via API</li>
+        <li>Export monthly statement (PDF/CSV)</li>
+      </ul>
+      <h3>Out of scope (v1)</h3>
+      <ul>
+        <li>Full accounting / GST invoicing ERP</li>
+        <li>GPS delivery boy tracking</li>
+        <li>UPI auto-reconciliation from bank statement</li>
+        <li>Multi-language advanced localization (can add Hindi labels later)</li>
+      </ul>
+    </section>
+
+    <section id="s6">
+      <h2>6. Functional Requirements (Features)</h2>
+
+      <h3>6.1 Core — Daily Milk Log</h3>
+      <ul>
+        <li><strong>FR-01</strong> Show month calendar for selected customer</li>
+        <li><strong>FR-02</strong> Tap a day to mark <em>Taken</em> or <em>Not Taken</em></li>
+        <li><strong>FR-03</strong> On Taken: default quantity &amp; rate auto-fill; user can override for that day</li>
+        <li><strong>FR-04</strong> Support morning / evening slots (optional toggle in settings)</li>
+        <li><strong>FR-05</strong> Add note per day (e.g., “guest home”, “sour milk returned”)</li>
+        <li><strong>FR-06</strong> Bulk mark date range (e.g., whole week Taken)</li>
+        <li><strong>FR-07</strong> Prevent future dates beyond today (configurable)</li>
+      </ul>
+
+      <h3>6.2 Core — Monthly Hisab</h3>
+      <ul>
+        <li><strong>FR-08</strong> Auto calculate: Total Qty, Total Amount, Days Taken, Days Skipped</li>
+        <li><strong>FR-09</strong> Apply adjustments: extra charge, discount, previous due carry-forward</li>
+        <li><strong>FR-10</strong> Show Payable = Opening Due + Month Amount + Adjustments − Payments</li>
+        <li><strong>FR-11</strong> Close / lock month after final hisab (optional) to avoid accidental edits</li>
+        <li><strong>FR-12</strong> Generate shareable monthly statement</li>
+      </ul>
+
+      <h3>6.3 Payments</h3>
+      <ul>
+        <li><strong>FR-13</strong> Record payment with date, amount, mode (Cash / UPI / Bank), reference note</li>
+        <li><strong>FR-14</strong> Support advance payment before month end</li>
+        <li><strong>FR-15</strong> Show running balance after each payment</li>
+        <li><strong>FR-16</strong> Payment history list per customer</li>
+      </ul>
+
+      <h3>6.4 Masters</h3>
+      <ul>
+        <li><strong>FR-17</strong> Customer master: name, phone, address, default qty, default rate, active flag</li>
+        <li><strong>FR-18</strong> Rate history: if rate changes mid-month, old days keep old rate (or apply from effective date)</li>
+        <li><strong>FR-19</strong> Holiday / off-day templates (e.g., every Sunday auto Not Taken — optional)</li>
+      </ul>
+
+      <h3>6.5 Additional Features (to make app more than “easy only”)</h3>
+      <ul>
+        <li><strong>FR-20 Dashboard:</strong> today’s pending marks, unpaid months, top dues</li>
+        <li><strong>FR-21 Reminders:</strong> notify owner for unmarked yesterday; remind unpaid hisab</li>
+        <li><strong>FR-22 WhatsApp share:</strong> one-tap share monthly bill text/PDF</li>
+        <li><strong>FR-23 PDF / CSV export:</strong> monthly statement download</li>
+        <li><strong>FR-24 Multi-customer:</strong> manage many households / routes</li>
+        <li><strong>FR-25 Products beyond milk:</strong> curd, ghee line items (simple product list)</li>
+        <li><strong>FR-26 Offline PWA mode:</strong> mark days offline, sync when online</li>
+        <li><strong>FR-27 Backup / restore:</strong> export full data JSON/CSV</li>
+        <li><strong>FR-28 PIN lock:</strong> simple app lock on open</li>
+        <li><strong>FR-29 Audit trail:</strong> who changed a day entry (if multi-user later)</li>
+        <li><strong>FR-30 Charts:</strong> monthly qty trend, payment collection chart</li>
+      </ul>
+    </section>
+
+    <section id="s7">
+      <h2>7. Monthly Hisab Rules (Business Logic)</h2>
+      <p>Default calculation for one customer in one month:</p>
+      <ol>
+        <li>For each day marked <strong>Taken</strong>: <code>day_amount = quantity × rate</code></li>
+        <li><code>month_amount = sum(day_amount)</code></li>
+        <li><code>gross_payable = opening_due + month_amount + extra_charges − discounts</code></li>
+        <li><code>net_due = gross_payable − sum(payments in period)</code></li>
+      </ol>
+      <table>
+        <thead><tr><th>Example</th><th>Value</th></tr></thead>
+        <tbody>
+          <tr><td>Default qty</td><td>1.5 litre / day</td></tr>
+          <tr><td>Rate</td><td>₹60 / litre</td></tr>
+          <tr><td>Days taken in month</td><td>26</td></tr>
+          <tr><td>Month amount</td><td>26 × 1.5 × 60 = ₹2,340</td></tr>
+          <tr><td>Previous due</td><td>₹200</td></tr>
+          <tr><td>Payment received</td><td>₹2,000</td></tr>
+          <tr><td><strong>Closing due</strong></td><td><strong>₹540</strong></td></tr>
+        </tbody>
+      </table>
+      <div class="note">
+        If quantity/rate changes on specific days, use that day’s override values, not only the customer default.
+      </div>
+    </section>
+
+    <section id="s8">
+      <h2>8. Non-Functional Requirements</h2>
+      <ul>
+        <li><strong>Usability:</strong> daily mark must be possible in under 5 seconds on phone</li>
+        <li><strong>Performance:</strong> month calendar load &lt; 2 seconds for 31 days × typical customers</li>
+        <li><strong>Reliability:</strong> no data loss on refresh; DB is source of truth</li>
+        <li><strong>Security:</strong> authenticated API; no open write endpoints; PIN/password for app</li>
+        <li><strong>Availability:</strong> PWA usable on mobile browser; installable</li>
+        <li><strong>Backup:</strong> export option mandatory before production use</li>
+      </ul>
+    </section>
+
+    <section id="s9">
+      <h2>9. PWA / Manifest Requirements (“menifiest”)</h2>
+      <p>User requested a website using <strong>manifest</strong> and related web-app capabilities. Requirements:</p>
+      <ul>
+        <li><strong>FR-PWA-01</strong> Provide <code>manifest.webmanifest</code> with name, short_name, icons, theme/background color, <code>display: standalone</code>, start_url</li>
+        <li><strong>FR-PWA-02</strong> App icons (192px, 512px) for Add to Home Screen</li>
+        <li><strong>FR-PWA-03</strong> Service worker for caching shell (HTML/CSS/JS)</li>
+        <li><strong>FR-PWA-04</strong> Offline queue for daily marks when network is unavailable (Phase 2)</li>
+        <li><strong>FR-PWA-05</strong> HTTPS hosting required for installability</li>
+      </ul>
+      <div class="ok">
+        Result: user can install “Milk Hisab” like an app icon on phone, open fullscreen without browser chrome.
+      </div>
+    </section>
+
+    <section id="s10">
+      <h2>10. Data Model (High Level)</h2>
+      <table>
+        <thead><tr><th>Table</th><th>Purpose</th><th>Key fields</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><code>users</code></td>
+            <td>Login</td>
+            <td>id, name, pin/password hash</td>
+          </tr>
+          <tr>
+            <td><code>customers</code></td>
+            <td>Who milk is for / from</td>
+            <td>name, phone, default_qty, default_rate, is_active</td>
+          </tr>
+          <tr>
+            <td><code>daily_entries</code></td>
+            <td>Per day take/skip</td>
+            <td>customer_id, date, slot, status(taken/skipped), qty, rate, note</td>
+          </tr>
+          <tr>
+            <td><code>payments</code></td>
+            <td>Money received/paid</td>
+            <td>customer_id, date, amount, mode, note, month_ref</td>
+          </tr>
+          <tr>
+            <td><code>month_closings</code></td>
+            <td>Final hisab snapshot</td>
+            <td>customer_id, year, month, opening_due, month_amount, paid, closing_due, locked</td>
+          </tr>
+          <tr>
+            <td><code>rate_changes</code> (optional)</td>
+            <td>Rate effective dating</td>
+            <td>customer_id, effective_from, rate</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="s11">
+      <h2>11. Screens / UI Flow</h2>
+      <ol>
+        <li><strong>Login / PIN</strong></li>
+        <li><strong>Dashboard</strong> — today pending, dues, quick “Mark today”</li>
+        <li><strong>Customers</strong> — list/add/edit</li>
+        <li><strong>Daily Calendar</strong> — month grid, color: green Taken / grey Skipped / empty Pending</li>
+        <li><strong>Day Entry Sheet</strong> — status, qty, rate, note, save</li>
+        <li><strong>Monthly Hisab</strong> — totals, adjustments, payments, due, share/export</li>
+        <li><strong>Payments</strong> — add payment, history</li>
+        <li><strong>Reports</strong> — month comparison, collection</li>
+        <li><strong>Settings</strong> — morning/evening mode, currency, backup, PWA info</li>
+      </ol>
+    </section>
+
+    <section id="s12">
+      <h2>12. Tech Approach (Recommended)</h2>
+      <p>Keep it small but solid:</p>
+      <table>
+        <thead><tr><th>Layer</th><th>Recommendation</th><th>Why</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Frontend</td>
+            <td>Angular or simple HTML/JS PWA</td>
+            <td>Fast UI, easy mobile layout; matches your existing Angular skill if desired</td>
+          </tr>
+          <tr>
+            <td>Backend API</td>
+            <td>.NET Web API or Node</td>
+            <td>Clean CRUD + auth</td>
+          </tr>
+          <tr>
+            <td>Database</td>
+            <td>PostgreSQL (or SQLite for ultra-local MVP)</td>
+            <td>Reliable persistence</td>
+          </tr>
+          <tr>
+            <td>PWA</td>
+            <td>manifest + service worker</td>
+            <td>Installable app experience</td>
+          </tr>
+          <tr>
+            <td>Hosting</td>
+            <td>Vercel/Netlify (UI) + small API host + managed DB</td>
+            <td>Low cost for personal/small business use</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="note">
+        If you want fastest MVP: one .NET API + Angular (or even static HTML) + Postgres, then add offline sync later.
+      </div>
+    </section>
+
+    <section id="s13">
+      <h2>13. Delivery Phases</h2>
+      <h3>Phase 1 — MVP (must have)</h3>
+      <ul>
+        <li>Customer master</li>
+        <li>Daily taken/not-taken entry</li>
+        <li>Monthly total + due</li>
+        <li>Payment entry</li>
+        <li>DB save + basic PWA manifest install</li>
+      </ul>
+      <h3>Phase 2 — Useful extras</h3>
+      <ul>
+        <li>WhatsApp share, PDF export</li>
+        <li>Dashboard + reminders</li>
+        <li>Rate change history</li>
+        <li>Morning/evening slots</li>
+      </ul>
+      <h3>Phase 3 — Power features</h3>
+      <ul>
+        <li>Offline sync queue</li>
+        <li>Multi-product (curd/ghee)</li>
+        <li>Multi-user + audit</li>
+        <li>Charts and route/customer groups</li>
+      </ul>
+    </section>
+
+    <section id="s14">
+      <h2>14. Assumptions, Risks, Open Questions</h2>
+      <h3>Assumptions</h3>
+      <ul>
+        <li>Primary users are comfortable with smartphone Chrome/Safari</li>
+        <li>Currency is INR unless configured otherwise</li>
+        <li>One owner manages entries in MVP</li>
+      </ul>
+      <h3>Risks</h3>
+      <ul>
+        <li>Users forget to mark days → need reminders + easy backfill</li>
+        <li>Mid-month rate change confusion → need clear effective-date rule</li>
+        <li>Offline edits conflict → need simple last-write or sync rules in Phase 3</li>
+      </ul>
+      <h3>Open questions (need your decision)</h3>
+      <ol>
+        <li>Is this for <strong>home consumption</strong> (you buy milk) or <strong>dairy seller</strong> (you deliver to many customers)?</li>
+        <li>One delivery per day, or morning + evening?</li>
+        <li>Should skipped days be auto-assumed if not marked, or must every day be marked?</li>
+        <li>Do you need Hindi UI labels in v1?</li>
+        <li>Preferred stack: Angular + .NET (like your LIMS style) or lighter HTML/JS + SQLite?</li>
+      </ol>
+    </section>
+
+    <section id="s15">
+      <h2>15. Acceptance Criteria (MVP Sign-off)</h2>
+      <ul>
+        <li>Given a customer with default 1L @ ₹60, when 20 days are Taken, month amount shows ₹1,200</li>
+        <li>When a day is marked Not Taken, it does not add amount</li>
+        <li>When payment of ₹500 is added, due reduces by ₹500</li>
+        <li>After browser refresh, all data remains (DB persistence verified)</li>
+        <li>Manifest allows “Install app” / Add to Home Screen on Android Chrome</li>
+        <li>Monthly statement can be viewed and exported</li>
+      </ul>
+      <div class="ok">
+        <strong>Next step after BRD approval:</strong> create Functional Spec + DB schema + screen wireframes, then scaffold MVP project.
+      </div>
+    </section>
+
+    <footer>
+      BRD — Daily Milk Hisab PWA · Draft v1.0 · Generated for review · Print-friendly
+    </footer>
+  </div>
+</body>
+</html>

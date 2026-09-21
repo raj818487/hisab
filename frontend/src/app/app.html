@@ -1,0 +1,19 @@
+<div class="shell">
+  <aside class="sidebar" aria-label="Main navigation">
+    <a routerLink="/personal" class="brand"><span class="brand-mark">h.</span> hisab</a>
+    <nav>
+      <a routerLink="/personal" routerLinkActive="active">My expenses</a>
+      <a routerLink="/dashboard" routerLinkActive="active">Milk business</a>
+      <a routerLink="/customers" routerLinkActive="active">Customers</a>
+      <a routerLink="/daily" routerLinkActive="active">Deliveries</a>
+      <a routerLink="/hisab" routerLinkActive="active">Business hisab</a>
+      <a routerLink="/payments" routerLinkActive="active">Collections</a>
+    </nav>
+    <p class="side-note">Everyday accounts, kept clear.</p>
+  </aside>
+  <div class="shell-main">
+    <main class="content"><router-outlet /></main>
+    <footer class="foot">Your everyday accounts, thoughtfully kept. <span>Manual payments · Downloadable receipts</span></footer>
+  </div>
+</div>
+<app-toast-host />

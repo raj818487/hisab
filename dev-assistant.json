@@ -1,0 +1,35 @@
+﻿{
+    "projectName":  "Milk-Hisab",
+    "projectRoot":  "D:\\Other Project\\Milk-Hisab",
+    "graphPath":  "D:\\Other Project\\Milk-Hisab\\graphify-out\\graph.json",
+    "techStack":  "Angular + .NET + PostgreSQL",
+    "backendPattern":  "Controller -\u003e IService -\u003e Service(AppDbContext); hybrid; SQLite",
+    "frontendPattern":  "Angular standalone pages: *.page.ts/html/scss + feature *.service.ts; HTTP via core/api.service.ts",
+    "apiPattern":  "/api/v1/\u003cresource\u003e",
+    "architectureRules":  [
+                              "NEVER_BREAK_EXISTING_FUNCTIONALITY: Every code change must preserve existing working behavior, preserve public API contracts/signatures, and pass graphify regression checks before finishing.",
+                              "ALWAYS_VERIFY_LATEST_CONTEXT: AI agents must query the latest graphify codebase graph and inspect dependent modules before modifying files.",
+                              "SENIOR_ENGINEER_SURGICAL_EDITS: Write code like a 10+ year senior engineer in the language—make minimal surgical edits, maximize reuse of existing project utilities, and avoid unnecessary refactoring."
+                          ],
+    "impactAnalysis":  {
+                           "requireGraphLinks":  true,
+                           "requireImpactManifest":  true,
+                           "batchSize":  25,
+                           "relations":  [
+                                             "*"
+                                         ]
+                       },
+    "goldenModuleSimple":  "frontend/src/app/features/customers",
+    "goldenModuleWizard":  "frontend/src/app/features/daily",
+    "existingFeatures":  {
+                             "customers":  "CRUD customers",
+                             "daily":  "Day board take/skip",
+                             "hisab":  "Monthly delivered/paid/due",
+                             "payments":  "Manual payment ledger",
+                             "receipts":  "Receipt view + HTML download",
+                             "dashboard":  "Home summary cards",
+                             "settings":  "PWA/settings"
+                         },
+    "memoryDir":  "C:\\Users\\raj.parmar\\.claude\\projects\\D-Other-Project-Milk-Hisab\\memory",
+    "port":  8765
+}

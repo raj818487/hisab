@@ -1,0 +1,54 @@
+<div class="page-head">
+  <div>
+    <h1>Dashboard</h1>
+    <p class="hint">Milk delivery ledger · Manual payments · Receipts (no gateway)</p>
+  </div>
+</div>
+
+@if (svc.error()) {
+  <p class="warn">{{ svc.error() }}</p>
+}
+
+@if (svc.loading() && !svc.summary()) {
+  <p class="muted">Loading dashboard…</p>
+} @else {
+  <div class="card-grid">
+    <div class="card">
+      <div class="label">Today — Taken</div>
+      <div class="val">{{ svc.todayTaken() }}</div>
+      <div class="sub">of {{ svc.todayTotal() }} customers</div>
+    </div>
+    <div class="card">
+      <div class="label">Today — Skip</div>
+      <div class="val">{{ svc.todaySkip() }}</div>
+    </div>
+    <div class="card">
+      <div class="label">Today — Pending</div>
+      <div class="val">{{ svc.todayPending() }}</div>
+    </div>
+    @if (svc.summary(); as s) {
+      <div class="card due">
+        <div class="label">Month due ({{ s.month }}/{{ s.year }})</div>
+        <div class="val">₹ {{ s.totalDue | number: '1.2-2' }}</div>
+        <div class="sub">
+          Delivered ₹{{ s.totalDelivered | number: '1.2-2' }}
+          · Paid ₹{{ s.totalPaid | number: '1.2-2' }}
+        </div>
+      </div>
+    }
+  </div>
+
+  @if (svc.todayTotal() === 0) {
+    <div class="card empty" style="margin-top: 1rem">
+      <p>No active customers yet.</p>
+      <a routerLink="/customers/new" class="btn">Add first customer</a>
+    </div>
+  }
+}
+
+<div class="actions">
+  <a routerLink="/daily" class="btn">Today's day-board</a>
+  <a routerLink="/payments" class="btn secondary">Record payment</a>
+  <a routerLink="/hisab" class="btn secondary">Month hisab</a>
+  <a routerLink="/customers" class="btn secondary">Customers</a>
+</div>

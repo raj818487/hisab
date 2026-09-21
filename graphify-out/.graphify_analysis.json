@@ -1,0 +1,389 @@
+{
+  "communities": {
+    "0": [
+      "argparse",
+      "argumentparser",
+      "completedprocess",
+      "datetime",
+      "hashlib",
+      "json",
+      "os",
+      "path",
+      "pathlib",
+      "re",
+      "shlex",
+      "shutil",
+      "skills_development_safety_core_scripts_change_safety",
+      "skills_development_safety_core_scripts_change_safety_baseline_path",
+      "skills_development_safety_core_scripts_change_safety_capture",
+      "skills_development_safety_core_scripts_change_safety_configured_checks",
+      "skills_development_safety_core_scripts_change_safety_current_changed_files",
+      "skills_development_safety_core_scripts_change_safety_git_paths",
+      "skills_development_safety_core_scripts_change_safety_graph_path",
+      "skills_development_safety_core_scripts_change_safety_graph_query",
+      "skills_development_safety_core_scripts_change_safety_hook",
+      "skills_development_safety_core_scripts_change_safety_is_ignored_path",
+      "skills_development_safety_core_scripts_change_safety_load_config",
+      "skills_development_safety_core_scripts_change_safety_main",
+      "skills_development_safety_core_scripts_change_safety_newest_source_mtime",
+      "skills_development_safety_core_scripts_change_safety_parser",
+      "skills_development_safety_core_scripts_change_safety_project_root",
+      "skills_development_safety_core_scripts_change_safety_public_symbols",
+      "skills_development_safety_core_scripts_change_safety_rationale_2",
+      "skills_development_safety_core_scripts_change_safety_refresh_graph",
+      "skills_development_safety_core_scripts_change_safety_run",
+      "skills_development_safety_core_scripts_change_safety_run_checks",
+      "skills_development_safety_core_scripts_change_safety_sha256",
+      "skills_development_safety_core_scripts_change_safety_verify",
+      "skills_development_safety_core_scripts_change_safety_verify_graph",
+      "subprocess",
+      "sys"
+    ],
+    "1": [
+      "frontend_angular_architect_build",
+      "frontend_angular_architect_extract_i18n",
+      "frontend_angular_architect_serve",
+      "frontend_angular_architect_test",
+      "frontend_angular_build_builder",
+      "frontend_angular_build_configurations",
+      "frontend_angular_build_defaultconfiguration",
+      "frontend_angular_build_options",
+      "frontend_angular_configurations_development",
+      "frontend_angular_configurations_production",
+      "frontend_angular_development_buildtarget",
+      "frontend_angular_development_extractlicenses",
+      "frontend_angular_development_optimization",
+      "frontend_angular_development_sourcemap",
+      "frontend_angular_extract_i18n_builder",
+      "frontend_angular_milk_hisab_architect",
+      "frontend_angular_options_assets",
+      "frontend_angular_options_browser",
+      "frontend_angular_options_inlinestylelanguage",
+      "frontend_angular_options_polyfills",
+      "frontend_angular_options_styles",
+      "frontend_angular_options_tsconfig",
+      "frontend_angular_production_budgets",
+      "frontend_angular_production_buildtarget",
+      "frontend_angular_production_outputhashing",
+      "frontend_angular_production_serviceworker",
+      "frontend_angular_serve_builder",
+      "frontend_angular_serve_configurations",
+      "frontend_angular_serve_defaultconfiguration",
+      "frontend_angular_test_builder",
+      "frontend_angular_test_options"
+    ],
+    "2": [
+      "frontend_package",
+      "frontend_package_name",
+      "frontend_package_prettier",
+      "frontend_package_prettier_overrides",
+      "frontend_package_prettier_printwidth",
+      "frontend_package_prettier_singlequote",
+      "frontend_package_private",
+      "frontend_package_scripts",
+      "frontend_package_scripts_build",
+      "frontend_package_scripts_ng",
+      "frontend_package_scripts_start",
+      "frontend_package_scripts_test",
+      "frontend_package_scripts_watch",
+      "frontend_package_version",
+      "ref_angular_build",
+      "ref_angular_cli",
+      "ref_angular_common",
+      "ref_angular_compiler",
+      "ref_angular_compiler_cli",
+      "ref_angular_forms",
+      "ref_jasmine_core",
+      "ref_karma",
+      "ref_karma_chrome_launcher",
+      "ref_karma_coverage",
+      "ref_karma_jasmine",
+      "ref_karma_jasmine_html_reporter",
+      "ref_rxjs",
+      "ref_tslib",
+      "ref_types_jasmine",
+      "ref_typescript",
+      "ref_zone_js"
+    ],
+    "3": [
+      "collections",
+      "skills_development_safety_core_scripts_impact_analysis",
+      "skills_development_safety_core_scripts_impact_analysis_classify",
+      "skills_development_safety_core_scripts_impact_analysis_graph_path",
+      "skills_development_safety_core_scripts_impact_analysis_links",
+      "skills_development_safety_core_scripts_impact_analysis_load_config",
+      "skills_development_safety_core_scripts_impact_analysis_load_manifest",
+      "skills_development_safety_core_scripts_impact_analysis_main",
+      "skills_development_safety_core_scripts_impact_analysis_manifest_path",
+      "skills_development_safety_core_scripts_impact_analysis_normalize",
+      "skills_development_safety_core_scripts_impact_analysis_parser",
+      "skills_development_safety_core_scripts_impact_analysis_rationale_2",
+      "skills_development_safety_core_scripts_impact_analysis_settings",
+      "skills_development_safety_core_scripts_impact_analysis_start",
+      "skills_development_safety_core_scripts_impact_analysis_status",
+      "skills_development_safety_core_scripts_impact_analysis_verify_complete"
+    ],
+    "4": [
+      "component",
+      "frontend_src_app_app",
+      "frontend_src_app_app_app",
+      "frontend_src_app_app_config",
+      "frontend_src_app_app_config_appconfig",
+      "frontend_src_app_app_routes",
+      "frontend_src_app_app_routes_routes",
+      "frontend_src_app_app_spec",
+      "frontend_src_main",
+      "ref_angular_core",
+      "ref_angular_platform_browser",
+      "ref_angular_router",
+      "ref_angular_service_worker"
+    ],
+    "5": [
+      "frontend_angular",
+      "frontend_angular_milk_hisab_prefix",
+      "frontend_angular_milk_hisab_projecttype",
+      "frontend_angular_milk_hisab_root",
+      "frontend_angular_milk_hisab_schematics",
+      "frontend_angular_milk_hisab_sourceroot",
+      "frontend_angular_newprojectroot",
+      "frontend_angular_projects",
+      "frontend_angular_projects_milk_hisab",
+      "frontend_angular_schema",
+      "frontend_angular_schematics_angular_component_style",
+      "frontend_angular_schematics_schematics_angular_component",
+      "frontend_angular_version"
+    ],
+    "6": [
+      "frontend_package_devdependencies",
+      "frontend_package_devdependencies_angular_build",
+      "frontend_package_devdependencies_angular_cli",
+      "frontend_package_devdependencies_angular_compiler_cli",
+      "frontend_package_devdependencies_jasmine_core",
+      "frontend_package_devdependencies_karma",
+      "frontend_package_devdependencies_karma_chrome_launcher",
+      "frontend_package_devdependencies_karma_coverage",
+      "frontend_package_devdependencies_karma_jasmine",
+      "frontend_package_devdependencies_karma_jasmine_html_reporter",
+      "frontend_package_devdependencies_types_jasmine",
+      "frontend_package_devdependencies_typescript"
+    ],
+    "7": [
+      "frontend_package_dependencies",
+      "frontend_package_dependencies_angular_common",
+      "frontend_package_dependencies_angular_compiler",
+      "frontend_package_dependencies_angular_core",
+      "frontend_package_dependencies_angular_forms",
+      "frontend_package_dependencies_angular_platform_browser",
+      "frontend_package_dependencies_angular_router",
+      "frontend_package_dependencies_angular_service_worker",
+      "frontend_package_dependencies_rxjs",
+      "frontend_package_dependencies_tslib",
+      "frontend_package_dependencies_zone_js"
+    ],
+    "8": [
+      "backend_controllers_weatherforecastcontroller",
+      "backend_controllers_weatherforecastcontroller_milkhisab_api_controllers_weatherforecastcontroller",
+      "backend_controllers_weatherforecastcontroller_milkhisab_api_controllers_weatherforecastcontroller_get",
+      "controllerbase",
+      "csharp_namespace:6a8ae0bf3d88de03",
+      "httpget",
+      "ienumerable",
+      "microsoft_aspnetcore_mvc",
+      "weatherforecast"
+    ],
+    "9": [
+      "backend_weatherforecast",
+      "backend_weatherforecast_milkhisab_api_weatherforecast",
+      "backend_weatherforecast_milkhisab_api_weatherforecast_date",
+      "backend_weatherforecast_milkhisab_api_weatherforecast_summary",
+      "backend_weatherforecast_milkhisab_api_weatherforecast_temperaturec",
+      "backend_weatherforecast_milkhisab_api_weatherforecast_temperaturef",
+      "csharp_namespace:55d0fe0ad07ee773",
+      "dateonly"
+    ],
+    "10": [
+      "workflows_update_project_memory",
+      "workflows_update_project_memory_complete",
+      "workflows_update_project_memory_features_schema",
+      "workflows_update_project_memory_meta",
+      "workflows_update_project_memory_partial",
+      "workflows_update_project_memory_stub",
+      "workflows_update_project_memory_summary_schema",
+      "workflows_update_project_memory_valid"
+    ],
+    "11": [
+      "workflows_feature_docs",
+      "workflows_feature_docs_discovery_schema",
+      "workflows_feature_docs_exportedfiles",
+      "workflows_feature_docs_gap_schema",
+      "workflows_feature_docs_meta",
+      "workflows_feature_docs_reposep",
+      "workflows_feature_docs_slug"
+    ],
+    "12": [
+      "backend_services_ihealthservice",
+      "backend_services_ihealthservice_milkhisab_api_services_healthservice",
+      "backend_services_ihealthservice_milkhisab_api_services_healthservice_status",
+      "backend_services_ihealthservice_milkhisab_api_services_ihealthservice",
+      "backend_services_ihealthservice_milkhisab_api_services_ihealthservice_status",
+      "csharp_namespace:5a0726e9ce79588a"
+    ],
+    "13": [
+      "backend_milkhisab_api",
+      "framework_net10_0",
+      "milkhisab",
+      "nuget_microsoft_aspnetcore_openapi",
+      "sdk_microsoft_net_sdk_web"
+    ],
+    "14": [
+      "setup_v2",
+      "setup_v2_ensure_dir",
+      "setup_v2_has_cmd",
+      "setup_v2_write_step",
+      "setup_v2_write_utf8"
+    ],
+    "15": [
+      "frontend_ngsw_config",
+      "frontend_ngsw_config_assetgroups",
+      "frontend_ngsw_config_index",
+      "frontend_ngsw_config_schema"
+    ],
+    "16": [
+      "setup_milk_hisab",
+      "setup_milk_hisab_ensure_dir",
+      "setup_milk_hisab_has_cmd",
+      "setup_milk_hisab_write_step"
+    ],
+    "17": [
+      "backend_data_appdbcontext",
+      "backend_data_appdbcontext_milkhisab_api_data_appdbcontext",
+      "csharp_namespace:6a75deb20b9d585c"
+    ],
+    "18": [
+      "backend_program"
+    ]
+  },
+  "cohesion": {
+    "0": 0.12612612612612611,
+    "1": 0.07956989247311828,
+    "2": 0.06451612903225806,
+    "3": 0.3,
+    "4": 0.2564102564102564,
+    "5": 0.15384615384615385,
+    "6": 0.16666666666666666,
+    "7": 0.18181818181818182,
+    "8": 0.2222222222222222,
+    "9": 0.25,
+    "10": 0.25,
+    "11": 0.2857142857142857,
+    "12": 0.4666666666666667,
+    "13": 0.4,
+    "14": 0.5,
+    "15": 0.5,
+    "16": 0.5,
+    "17": 0.6666666666666666,
+    "18": 1.0
+  },
+  "gods": [
+    {
+      "id": "skills_development_safety_core_scripts_change_safety_verify_graph",
+      "label": "verify_graph()",
+      "degree": 12
+    },
+    {
+      "id": "skills_development_safety_core_scripts_change_safety_capture",
+      "label": "capture()",
+      "degree": 10
+    },
+    {
+      "id": "skills_development_safety_core_scripts_change_safety_verify",
+      "label": "verify()",
+      "degree": 9
+    },
+    {
+      "id": "skills_development_safety_core_scripts_change_safety_run_checks",
+      "label": "run_checks()",
+      "degree": 8
+    },
+    {
+      "id": "skills_development_safety_core_scripts_change_safety_main",
+      "label": "main()",
+      "degree": 8
+    },
+    {
+      "id": "skills_development_safety_core_scripts_impact_analysis_start",
+      "label": "start()",
+      "degree": 8
+    },
+    {
+      "id": "frontend_angular_projects_milk_hisab",
+      "label": "milk-hisab",
+      "degree": 7
+    },
+    {
+      "id": "frontend_angular_build_options",
+      "label": "options",
+      "degree": 7
+    },
+    {
+      "id": "skills_development_safety_core_scripts_change_safety_run",
+      "label": "run()",
+      "degree": 7
+    },
+    {
+      "id": "skills_development_safety_core_scripts_impact_analysis_verify_complete",
+      "label": "verify_complete()",
+      "degree": 7
+    }
+  ],
+  "surprises": [
+    {
+      "source": "verify_graph()",
+      "target": "links()",
+      "source_files": [
+        "skills/development-safety-core/scripts/change_safety.py",
+        "skills/development-safety-core/scripts/impact_analysis.py"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "bridges separate communities"
+    },
+    {
+      "source": "verify_graph()",
+      "target": "settings()",
+      "source_files": [
+        "skills/development-safety-core/scripts/change_safety.py",
+        "skills/development-safety-core/scripts/impact_analysis.py"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "bridges separate communities"
+    },
+    {
+      "source": "capture()",
+      "target": "verify_complete()",
+      "source_files": [
+        "skills/development-safety-core/scripts/change_safety.py",
+        "skills/development-safety-core/scripts/impact_analysis.py"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "bridges separate communities"
+    },
+    {
+      "source": "verify()",
+      "target": "verify_complete()",
+      "source_files": [
+        "skills/development-safety-core/scripts/change_safety.py",
+        "skills/development-safety-core/scripts/impact_analysis.py"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "bridges separate communities"
+    }
+  ],
+  "tokens": {
+    "input": 0,
+    "output": 0
+  }
+}
