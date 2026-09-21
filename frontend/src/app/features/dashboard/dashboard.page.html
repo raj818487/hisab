@@ -31,8 +31,9 @@
         <div class="label">Month due ({{ s.month }}/{{ s.year }})</div>
         <div class="val">₹ {{ s.totalDue | number: '1.2-2' }}</div>
         <div class="sub">
-          Delivered ₹{{ s.totalDelivered | number: '1.2-2' }}
-          · Paid ₹{{ s.totalPaid | number: '1.2-2' }}
+          Delivered ₹{{ s.totalDelivered | number: '1.2-2' }} · Paid ₹{{
+            s.totalPaid | number: '1.2-2'
+          }}
         </div>
       </div>
     }

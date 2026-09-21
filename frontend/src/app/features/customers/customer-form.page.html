@@ -3,7 +3,8 @@
   <label>Name * <input [(ngModel)]="name" name="name" required /></label>
   <label>Phone <input [(ngModel)]="phone" name="phone" /></label>
   <label>Address <textarea [(ngModel)]="address" name="address" rows="2"></textarea></label>
-  <label>Default rate (₹/L)
+  <label
+    >Default rate (₹/L)
     <input type="number" step="0.01" [(ngModel)]="defaultRate" name="defaultRate" />
   </label>
   @if (!isNew()) {

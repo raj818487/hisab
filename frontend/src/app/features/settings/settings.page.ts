@@ -5,7 +5,7 @@ import { SettingsService } from './settings.service';
   selector: 'app-settings',
   standalone: true,
   templateUrl: './settings.page.html',
-  styleUrl: './settings.page.scss'
+  styleUrl: './settings.page.scss',
 })
 export class SettingsPage {
   readonly svc = inject(SettingsService);

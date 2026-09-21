@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using MilkHisab.Api.Data;
 using MilkHisab.Api.DTOs;
 using MilkHisab.Api.Models;
+
 namespace MilkHisab.Api.Services;
 
 public class AccountService(AppDbContext db) : IAccountService
@@ -11,7 +12,7 @@ public class AccountService(AppDbContext db) : IAccountService
     {
         var name = r.Name?.Trim().ToLowerInvariant();
         if (string.IsNullOrEmpty(name) || name.Length > 80 || string.IsNullOrEmpty(r.Password) || r.Password.Length < 10 || r.Password.Length > 200)
-            throw new ArgumentException("Enter a username (up to 80 characters) and password of 10–200 characters.");
+            throw new ArgumentException("Enter a username (up to 80 characters) and a password of 10-200 characters.");
         var user = await db.LedgerUsers.SingleOrDefaultAsync(x => x.Name == name);
         var hasher = new PasswordHasher<LedgerUser>();
         if (register)
@@ -27,5 +28,12 @@ public class AccountService(AppDbContext db) : IAccountService
         else if (user == null || hasher.VerifyHashedPassword(user, user.PasswordHash, r.Password) == PasswordVerificationResult.Failed)
             return null;
         return user;
+    }
+
+    public Task<LedgerUser?> FindByNameAsync(string name)
+    {
+        var n = name?.Trim().ToLowerInvariant();
+        if (string.IsNullOrEmpty(n)) return Task.FromResult<LedgerUser?>(null);
+        return db.LedgerUsers.SingleOrDefaultAsync(x => x.Name == n);
     }
 }

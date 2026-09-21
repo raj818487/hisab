@@ -1,0 +1,30 @@
+<div class="shell">
+  <aside class="sidebar" aria-label="Main">
+    <a routerLink="/personal" class="brand" aria-label="hisab home">
+      <span class="brand-mark" aria-hidden="true">h.</span>
+      <span class="brand-text">
+        <strong>hisab</strong>
+        <small>milk ledger</small>
+      </span>
+    </a>
+    <nav>
+      <a routerLink="/personal" routerLinkActive="active">Personal</a>
+      <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+      <a routerLink="/customers" routerLinkActive="active">Customers</a>
+      <a routerLink="/daily" routerLinkActive="active">Daily</a>
+      <a routerLink="/hisab" routerLinkActive="active">Hisab</a>
+      <a routerLink="/payments" routerLinkActive="active">Payments</a>
+      <a routerLink="/receipts" routerLinkActive="active">Receipts</a>
+      <a routerLink="/settings" routerLinkActive="active">Settings</a>
+    </nav>
+  </aside>
+  <div class="shell-main">
+    <main class="content">
+      <router-outlet />
+    </main>
+    <footer class="foot">
+      Manual payments only · Receipt download · No payment gateway
+    </footer>
+  </div>
+</div>
+<app-toast-host />

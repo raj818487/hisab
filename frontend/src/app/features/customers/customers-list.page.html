@@ -54,12 +54,24 @@
       </tbody>
     </table>
     <div class="pager">
-      <span>
-        Page {{ page() }} / {{ totalPages() }}
-      </span>
+      <span> Page {{ page() }} / {{ totalPages() }} </span>
       <div class="pages">
-        <button type="button" (click)="go(page() - 1)" [disabled]="page() <= 1">Prev</button>
-        <button type="button" (click)="go(page() + 1)" [disabled]="page() >= totalPages()">Next</button>
+        <button
+          type="button"
+          class="btn secondary"
+          (click)="go(page() - 1)"
+          [disabled]="page() <= 1"
+        >
+          Prev
+        </button>
+        <button
+          type="button"
+          class="btn secondary"
+          (click)="go(page() + 1)"
+          [disabled]="page() >= totalPages()"
+        >
+          Next
+        </button>
       </div>
     </div>
   </div>

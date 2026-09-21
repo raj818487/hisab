@@ -1,4 +1,10 @@
-import { Expense, ExpenseDraft, ExpensePayment, PersonalData, Product } from '../features/personal/personal.models';
+import {
+  Expense,
+  ExpenseDraft,
+  ExpensePayment,
+  PersonalData,
+  Product,
+} from '../features/personal/personal.models';
 import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -81,16 +87,45 @@ export class ApiService {
   private readonly http = inject(HttpClient);
   private readonly base = environment.apiBaseUrl;
 
-  personalSession() { return this.http.get<{name:string}>(`${this.base}/account`, {withCredentials:true}); }
-  personalAuth(name: string, password: string, register: boolean) { return this.http.post<{name:string}>(`${this.base}/account/${register ? 'register' : 'login'}`, {name,password}, {withCredentials:true}); }
-  personalLogout() { return this.http.post(`${this.base}/account/logout`, {}, {withCredentials:true}); }
-  personalData() { return this.http.get<PersonalData>(`${this.base}/personal`, {withCredentials:true}); }
-  personalProduct(name: string, unit: string, rate: number) { return this.http.post<Product>(`${this.base}/personal/products`, {name,unit,rate}, {withCredentials:true}); }
-  personalExpense(body: ExpenseDraft) { return this.http.post<Expense>(`${this.base}/personal/expenses`,body,{withCredentials:true}); }
-  personalPay(id: number, date: string, amount: number, mode: string) { return this.http.post<ExpensePayment>(`${this.base}/personal/expenses/${id}/payments`,{date,amount,mode},{withCredentials:true}); }
-  personalExpenseUpdate(id: number, body: ExpenseDraft) { return this.http.put<Expense>(`${this.base}/personal/expenses/${id}`, body, { withCredentials: true }); }
-  personalExpenseDelete(id: number) { return this.http.delete(`${this.base}/personal/expenses/${id}`, { withCredentials: true }); }
-  personalProductDelete(id: number) { return this.http.delete(`${this.base}/personal/products/${id}`, { withCredentials: true }); }
+  personalSession() {
+    return this.http.get<{ name: string }>(`${this.base}/account`);
+  }
+  personalAuth(name: string, password: string, register: boolean) {
+    return this.http.post<{
+      accessToken: string;
+      refreshToken: string;
+      expiresAt: string;
+      name: string;
+    }>(`${this.base}/account/${register ? 'register' : 'login'}`, { name, password });
+  }
+  personalLogout() {
+    return this.http.post(`${this.base}/account/logout`, {});
+  }
+  personalData() {
+    return this.http.get<PersonalData>(`${this.base}/personal`);
+  }
+  personalProduct(name: string, unit: string, rate: number) {
+    return this.http.post<Product>(`${this.base}/personal/products`, { name, unit, rate });
+  }
+  personalExpense(body: ExpenseDraft) {
+    return this.http.post<Expense>(`${this.base}/personal/expenses`, body);
+  }
+  personalPay(id: number, date: string, amount: number, mode: string) {
+    return this.http.post<ExpensePayment>(`${this.base}/personal/expenses/${id}/payments`, {
+      date,
+      amount,
+      mode,
+    });
+  }
+  personalExpenseUpdate(id: number, body: ExpenseDraft) {
+    return this.http.put<Expense>(`${this.base}/personal/expenses/${id}`, body);
+  }
+  personalExpenseDelete(id: number) {
+    return this.http.delete(`${this.base}/personal/expenses/${id}`);
+  }
+  personalProductDelete(id: number) {
+    return this.http.delete(`${this.base}/personal/products/${id}`);
+  }
   // --- Customers ---
   getCustomers(activeOnly = false): Observable<Customer[]> {
     const params = new HttpParams().set('activeOnly', String(activeOnly));
@@ -118,7 +153,7 @@ export class ApiService {
       address?: string | null;
       defaultRate: number;
       isActive: boolean;
-    }
+    },
   ): Observable<Customer> {
     return this.http.put<Customer>(`${this.base}/customers/${id}`, body);
   }
@@ -165,16 +200,12 @@ export class ApiService {
     return this.http.get<Payment[]>(`${this.base}/payments/by-month`, { params });
   }
 
-  getPaymentsByCustomer(
-    customerId: number,
-    year?: number,
-    month?: number
-  ): Observable<Payment[]> {
+  getPaymentsByCustomer(customerId: number, year?: number, month?: number): Observable<Payment[]> {
     let params = new HttpParams();
     if (year != null) params = params.set('year', year);
     if (month != null) params = params.set('month', month);
     return this.http.get<Payment[]>(`${this.base}/payments/by-customer/${customerId}`, {
-      params
+      params,
     });
   }
 
@@ -189,8 +220,7 @@ export class ApiService {
 
   downloadReceiptHtml(paymentId: number): Observable<Blob> {
     return this.http.get(`${this.base}/receipts/${paymentId}/html`, {
-      responseType: 'blob'
+      responseType: 'blob',
     });
   }
 }
-

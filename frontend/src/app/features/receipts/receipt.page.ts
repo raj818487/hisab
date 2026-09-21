@@ -8,7 +8,7 @@ import { ReceiptsService } from './receipts.service';
   standalone: true,
   imports: [RouterLink, DecimalPipe],
   templateUrl: './receipt.page.html',
-  styleUrl: './receipt.page.scss'
+  styleUrl: './receipt.page.scss',
 })
 export class ReceiptPage implements OnInit {
   readonly svc = inject(ReceiptsService);

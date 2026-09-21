@@ -34,7 +34,7 @@ export class DailyService {
         for (const r of rows) {
           next[r.customerId] = {
             qty: r.quantityLitres ?? 0,
-            rate: r.rate ?? r.defaultRate
+            rate: r.rate ?? r.defaultRate,
           };
         }
         this.draft.set(next);
@@ -46,7 +46,7 @@ export class DailyService {
         this.msgOk.set(false);
         this.msg.set(readApiError(e, 'Failed to load day-board'));
         this.loading.set(false);
-      }
+      },
     });
   }
 
@@ -63,7 +63,7 @@ export class DailyService {
         customerId: row.customerId,
         date: this.date(),
         quantityLitres: qty,
-        rate
+        rate,
       })
       .pipe(
         tap({
@@ -74,8 +74,8 @@ export class DailyService {
           error: (e) => {
             this.msgOk.set(false);
             this.msg.set(readApiError(e, 'Save failed'));
-          }
-        })
+          },
+        }),
       );
   }
 
@@ -84,7 +84,7 @@ export class DailyService {
     if (!d) return;
     this.apiUpsert(row, +d.qty, +d.rate).subscribe({
       next: () => this.load(),
-      error: () => undefined
+      error: () => undefined,
     });
   }
 }

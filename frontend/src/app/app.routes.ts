@@ -19,5 +19,5 @@ export const routes: Routes = [
   { path: 'hisab', component: HisabPage },
   { path: 'payments', component: PaymentsPage },
   { path: 'receipts/:paymentId', component: ReceiptPage },
-  { path: '**', redirectTo: 'personal' }
+  { path: '**', redirectTo: 'personal' },
 ];

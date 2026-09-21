@@ -4,11 +4,19 @@
     <p class="hint">Delivered − paid = due · per customer</p>
   </div>
   <div class="filters">
-    <label>Year
+    <label
+      >Year
       <input type="number" [ngModel]="svc.year()" (ngModelChange)="svc.setYear($event)" />
     </label>
-    <label>Month
-      <input type="number" min="1" max="12" [ngModel]="svc.month()" (ngModelChange)="svc.setMonth($event)" />
+    <label
+      >Month
+      <input
+        type="number"
+        min="1"
+        max="12"
+        [ngModel]="svc.month()"
+        (ngModelChange)="svc.setMonth($event)"
+      />
     </label>
   </div>
 </div>

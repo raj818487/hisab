@@ -34,7 +34,7 @@ export class HisabService {
         this.summary.set(null);
         this.error.set(readApiError(e, 'Failed to load hisab'));
         this.loading.set(false);
-      }
+      },
     });
   }
 }

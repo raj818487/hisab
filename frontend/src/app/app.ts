@@ -7,9 +7,8 @@ import { ToastHostComponent } from './shared/toast/toast-host.component';
   standalone: true,
   imports: [RouterOutlet, RouterLink, RouterLinkActive, ToastHostComponent],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrl: './app.css',
 })
 export class App {
   readonly title = 'Hisab';
 }
-

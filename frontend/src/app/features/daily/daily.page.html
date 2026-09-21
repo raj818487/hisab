@@ -3,7 +3,8 @@
     <h1>Daily day-board</h1>
     <p class="hint">Enter litres + rate per customer · Save row by row</p>
   </div>
-  <label class="date">Date
+  <label class="date"
+    >Date
     <input type="date" [ngModel]="svc.date()" (ngModelChange)="onDate($event)" />
   </label>
 </div>
@@ -49,7 +50,8 @@
               />
             </td>
             <td>
-              ₹ {{
+              ₹
+              {{
                 (draftFor(row.customerId).qty || 0) * (draftFor(row.customerId).rate || 0)
                   | number: '1.2-2'
               }}

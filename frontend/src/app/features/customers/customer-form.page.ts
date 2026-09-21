@@ -9,7 +9,7 @@ import { readApiError } from '../../core/http-error';
   standalone: true,
   imports: [FormsModule, RouterLink],
   templateUrl: './customer-form.page.html',
-  styleUrl: './customer-form.page.scss'
+  styleUrl: './customer-form.page.scss',
 })
 export class CustomerFormPage implements OnInit {
   private readonly svc = inject(CustomersService);
@@ -39,7 +39,7 @@ export class CustomerFormPage implements OnInit {
           this.defaultRate = c.defaultRate;
           this.isActive = c.isActive;
         },
-        error: (e) => this.error.set(readApiError(e, 'Customer not found'))
+        error: (e) => this.error.set(readApiError(e, 'Customer not found')),
       });
     }
   }
@@ -61,14 +61,14 @@ export class CustomerFormPage implements OnInit {
           name: this.name.trim(),
           phone: this.phone || null,
           address: this.address || null,
-          defaultRate: this.defaultRate
+          defaultRate: this.defaultRate,
         })
         .subscribe({
           next: () => this.router.navigateByUrl('/customers'),
           error: (e) => {
             this.error.set(readApiError(e, 'Save failed'));
             this.saving.set(false);
-          }
+          },
         });
     } else if (this.id != null) {
       this.svc
@@ -77,14 +77,14 @@ export class CustomerFormPage implements OnInit {
           phone: this.phone || null,
           address: this.address || null,
           defaultRate: this.defaultRate,
-          isActive: this.isActive
+          isActive: this.isActive,
         })
         .subscribe({
           next: () => this.router.navigateByUrl('/customers'),
           error: (e) => {
             this.error.set(readApiError(e, 'Save failed'));
             this.saving.set(false);
-          }
+          },
         });
     }
   }

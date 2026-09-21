@@ -19,7 +19,7 @@ export class PaymentsService {
       error: (e) => {
         this.customers.set([]);
         this.error.set(readApiError(e, 'Failed to load customers'));
-      }
+      },
     });
   }
 
@@ -38,7 +38,7 @@ export class PaymentsService {
         this.payments.set([]);
         this.error.set(readApiError(e, 'Failed to load payments'));
         this.loading.set(false);
-      }
+      },
     });
   }
 
@@ -48,7 +48,7 @@ export class PaymentsService {
       error: (e) => {
         this.payments.set([]);
         this.error.set(readApiError(e, 'Failed to load payments'));
-      }
+      },
     });
   }
 

@@ -22,14 +22,14 @@ export class ReceiptsService {
     this.error.set('');
     this.receipt.set(null);
     this.api.getReceipt(paymentId).subscribe({
-      next: (r) => {
+      next: (r: Receipt) => {
         this.receipt.set(r);
         this.loading.set(false);
       },
-      error: (e) => {
+      error: (e: unknown) => {
         this.error.set(readApiError(e, 'Receipt not found'));
         this.loading.set(false);
-      }
+      },
     });
   }
 
@@ -43,7 +43,7 @@ export class ReceiptsService {
   downloadHtml(): void {
     if (!this.paymentId) return;
     this.api.downloadReceiptHtml(this.paymentId).subscribe({
-      next: (blob) => {
+      next: (blob: Blob) => {
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
@@ -51,7 +51,7 @@ export class ReceiptsService {
         a.click();
         URL.revokeObjectURL(url);
       },
-      error: (e) => this.error.set(readApiError(e, 'Download failed'))
+      error: (e: unknown) => this.error.set(readApiError(e, 'Download failed')),
     });
   }
 

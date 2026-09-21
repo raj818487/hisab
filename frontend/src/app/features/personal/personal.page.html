@@ -4,17 +4,39 @@
   <div class="welcome">
     <section class="welcome-copy">
       <span class="eyebrow">A LITTLE CLARITY, EVERY DAY</span>
-      <h1>Your everyday money.<br><em>All accounted for.</em></h1>
+      <h1>Your everyday money.<br /><em>All accounted for.</em></h1>
       <p>Track expenses, products, and “did I take this today?” — date by date.</p>
     </section>
     <form class="card account-form" (ngSubmit)="svc.authenticate(username, password, register)">
       <span class="eyebrow">YOUR PE₹ONAL SPACE</span>
       <h2>{{ register ? 'Start your hisab' : 'Welcome back' }}</h2>
-      <label>Username<input name="username" [(ngModel)]="username" required maxlength="80" autocomplete="username" /></label>
-      <label>Password<input name="password" type="password" [(ngModel)]="password" required minlength="10" maxlength="200" [autocomplete]="register ? 'new-password' : 'current-password'" /></label>
-      @if (svc.error()) { <p class="err" role="alert">{{ svc.error() }}</p> }
-      <button class="btn" [disabled]="svc.busy()">{{ svc.busy() ? 'Please wait…' : register ? 'Create my account' : 'Sign in' }}</button>
-      <button type="button" class="text-btn" (click)="register = !register">{{ register ? 'Already have an account? Sign in' : 'New here? Create an account' }}</button>
+      <label
+        >Username<input
+          name="username"
+          [(ngModel)]="username"
+          required
+          maxlength="80"
+          autocomplete="username"
+      /></label>
+      <label
+        >Password<input
+          name="password"
+          type="password"
+          [(ngModel)]="password"
+          required
+          minlength="10"
+          maxlength="200"
+          [autocomplete]="register ? 'new-password' : 'current-password'"
+      /></label>
+      @if (svc.error()) {
+        <p class="err" role="alert">{{ svc.error() }}</p>
+      }
+      <button class="btn" [disabled]="svc.busy()">
+        {{ svc.busy() ? 'Please wait…' : register ? 'Create my account' : 'Sign in' }}
+      </button>
+      <button type="button" class="btn ghost" (click)="register = !register">
+        {{ register ? 'Already have an account? Sign in' : 'New here? Create an account' }}
+      </button>
     </form>
   </div>
 } @else {
@@ -22,32 +44,50 @@
     <div>
       <span class="eyebrow">YOUR PE₹ONAL HISAB</span>
       <h1>Everyday, in balance.</h1>
-      <p class="hint">Add, edit, or remove expenses — and tap a calendar day when you take a product.</p>
+      <p class="hint">
+        Add, edit, or remove expenses — and tap a calendar day when you take a product.
+      </p>
     </div>
     <div class="head-actions">
       <span class="user-chip">{{ svc.user() }}</span>
-      <button class="text-btn" [disabled]="svc.busy()" (click)="logout()">Sign out</button>
+      <button class="btn ghost" [disabled]="svc.busy()" (click)="logout()">Sign out</button>
     </div>
   </div>
 
-  @if (svc.error()) { <p class="err" role="alert">{{ svc.error() }}</p> }
-  @if (svc.message()) { <p class="ok" role="status">{{ svc.message() }}</p> }
+  @if (svc.error()) {
+    <p class="err" role="alert">{{ svc.error() }}</p>
+  }
+  @if (svc.message()) {
+    <p class="ok" role="status">{{ svc.message() }}</p>
+  }
 
   <div class="workspace-toolbar">
     <div class="period">
-      <label>Month<input type="month" [ngModel]="svc.month()" (ngModelChange)="setMonth($event)" /></label>
+      <label
+        >Month<input type="month" [ngModel]="svc.month()" (ngModelChange)="setMonth($event)"
+      /></label>
     </div>
     <div class="head-actions">
-      <button class="btn secondary" type="button" (click)="showProduct = !showProduct">+ Product</button>
+      <button class="btn secondary" type="button" (click)="showProduct = !showProduct">
+        + Product
+      </button>
       <button class="btn" type="button" (click)="openNewExpense()">+ Expense</button>
     </div>
   </div>
 
   <section class="metrics" aria-label="Monthly summary">
-    <article class="metric primary"><span>Purchases</span><strong>₹{{ svc.totals().purchases | number:'1.2-2' }}</strong></article>
-    <article class="metric"><span>Paid</span><strong>₹{{ svc.totals().paid | number:'1.2-2' }}</strong></article>
-    <article class="metric"><span>Opening</span><strong>₹{{ svc.totals().opening | number:'1.2-2' }}</strong></article>
-    <article class="metric"><span>Closing</span><strong>₹{{ svc.totals().closing | number:'1.2-2' }}</strong></article>
+    <article class="metric primary">
+      <span>Purchases</span><strong>₹{{ svc.totals().purchases | number: '1.2-2' }}</strong>
+    </article>
+    <article class="metric">
+      <span>Paid</span><strong>₹{{ svc.totals().paid | number: '1.2-2' }}</strong>
+    </article>
+    <article class="metric">
+      <span>Opening</span><strong>₹{{ svc.totals().opening | number: '1.2-2' }}</strong>
+    </article>
+    <article class="metric">
+      <span>Closing</span><strong>₹{{ svc.totals().closing | number: '1.2-2' }}</strong>
+    </article>
   </section>
 
   <!-- Product calendar: tap a day = I took this product -->
@@ -57,63 +97,100 @@
         <span class="eyebrow">PRODUCT CALENDAR</span>
         <h2>Did I take it on this date?</h2>
       </div>
-      <button class="btn" type="button" [disabled]="!calProduct()" (click)="takeOnDay()">Took it today / selected day</button>
+      <button class="btn" type="button" [disabled]="!calProduct()" (click)="takeOnDay()">
+        Took it today / selected day
+      </button>
     </div>
     <div class="cal-toolbar">
-      <label>Product
+      <label
+        >Product
         <select [ngModel]="calProductId()" (ngModelChange)="onCalProduct($event)">
           <option [ngValue]="0">All products</option>
           @for (p of svc.data().products; track p.id) {
-            <option [ngValue]="p.id">{{ p.name }} · ₹{{ p.rate | number:'1.0-2' }}/{{ p.unit }}</option>
+            <option [ngValue]="p.id">
+              {{ p.name }} · ₹{{ p.rate | number: '1.0-2' }}/{{ p.unit }}
+            </option>
           }
         </select>
       </label>
       <div class="cal-nav">
-        <button type="button" class="text-btn" (click)="shiftCalMonth(-1)" aria-label="Previous month">‹</button>
-        <input type="month" [ngModel]="calMonth()" (ngModelChange)="setCalMonth($event)" aria-label="Calendar month" />
-        <button type="button" class="text-btn" (click)="shiftCalMonth(1)" aria-label="Next month">›</button>
+        <button
+          type="button"
+          class="btn ghost"
+          (click)="shiftCalMonth(-1)"
+          aria-label="Previous month"
+        >
+          ‹
+        </button>
+        <input
+          type="month"
+          [ngModel]="calMonth()"
+          (ngModelChange)="setCalMonth($event)"
+          aria-label="Calendar month"
+        />
+        <button type="button" class="btn ghost" (click)="shiftCalMonth(1)" aria-label="Next month">
+          ›
+        </button>
       </div>
     </div>
     @if (!svc.data().products.length) {
       <p class="muted">Add a product fi₹t, then mark days you take it.</p>
     } @else {
       <div class="cal-grid" role="grid" aria-label="Product take calendar">
-        @for (w of ['Sun','Mon','Tue','Wed','Thu','Fri','Sat']; track w) {
+        @for (w of ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']; track w) {
           <div class="cal-dow">{{ w }}</div>
         }
         @for (cell of calCells(); track $index) {
-          <button type="button" class="cal-day"
+          <button
+            type="button"
+            class="cal-day"
             [class.muted]="!cell.inMonth"
             [class.taken]="cell.taken"
             [class.selected]="cell.date === selectedDay()"
             [class.today]="cell.date === today"
             [disabled]="!cell.inMonth || cell.date > today"
             (click)="pickDay(cell)"
-            [attr.aria-label]="cell.inMonth ? (cell.taken ? cell.date + ' taken' : cell.date) : null">
+            [attr.aria-label]="
+              cell.inMonth ? (cell.taken ? cell.date + ' taken' : cell.date) : null
+            "
+          >
             @if (cell.inMonth) {
               <span class="num">{{ cell.day }}</span>
-              @if (cell.taken) { <span class="dot" aria-hidden="true"></span> }
+              @if (cell.taken) {
+                <span class="dot" aria-hidden="true"></span>
+              }
             }
           </button>
         }
       </div>
-      <div class="cal-legend"><span class="swatch taken"></span> Taken / expense logged · tap a day to review or add</div>
+      <div class="cal-legend">
+        <span class="swatch taken"></span> Taken / expense logged · tap a day to review or add
+      </div>
       @if (selectedDay(); as day) {
         <div class="day-panel">
           <div class="section-heading">
             <h3>{{ day }}</h3>
-            <button type="button" class="btn secondary" (click)="takeOnDay(day)">+ Add for this day</button>
+            <button type="button" class="btn secondary" (click)="takeOnDay(day)">
+              + Add for this day
+            </button>
           </div>
           @for (e of dayExpenses(); track e.id) {
             <div class="day-row">
               <div>
                 <strong>{{ e.title }}</strong>
-                <small>₹{{ e.amount | number:'1.2-2' }}@if (e.quantity) { · {{ e.quantity }} × ₹{{ e.rate | number:'1.2-2' }} }</small>
+                <small
+                  >₹{{ e.amount | number: '1.2-2' }}
+                  @if (e.quantity) {
+                    · {{ e.quantity }} × ₹{{ e.rate | number: '1.2-2' }}
+                  }
+                </small>
               </div>
               <div class="row-actions">
-                <button type="button" class="text-btn" (click)="beginEdit(e)">Edit</button>
-                <button type="button" class="text-btn danger" (click)="removeExpense(e)">Remove</button>
-                @if (svc.due(e) > 0) { <button type="button" class="text-btn" (click)="beginPayment(e)">Pay</button> }
+                <button type="button" class="btn ghost" (click)="beginEdit(e)">Edit</button>
+                <button type="button" class="btn ghost" (click)="removeExpense(e)">Remove</button>
+                @if (svc.due(e) > 0) {
+                  <button type="button" class="btn ghost" (click)="beginPayment(e)">Pay</button>
+                }
               </div>
             </div>
           } @empty {
@@ -126,8 +203,12 @@
       <div class="product-chips">
         @for (p of svc.data().products; track p.id) {
           <span class="chip">
-            <button type="button" class="chip-main" (click)="onCalProduct(p.id); takeOnDay(today)">{{ p.name }}</button>
-            <button type="button" class="chip-x" title="Remove product" (click)="removeProduct(p)">×</button>
+            <button type="button" class="chip-main" (click)="onCalProduct(p.id); takeOnDay(today)">
+              {{ p.name }}
+            </button>
+            <button type="button" class="chip-x" title="Remove product" (click)="removeProduct(p)">
+              ×
+            </button>
           </span>
         }
       </div>
@@ -136,11 +217,32 @@
 
   @if (showProduct) {
     <form class="card entry-form" (ngSubmit)="saveProduct()">
-      <div class="section-heading"><h2>Add product</h2><button type="button" class="text-btn" (click)="showProduct=false">Close</button></div>
+      <div class="section-heading">
+        <h2>Add product</h2>
+        <button type="button" class="btn ghost" (click)="showProduct = false">Close</button>
+      </div>
       <div class="form-grid">
-        <label>Name<input name="productName" [(ngModel)]="productName" required maxlength="120" /></label>
-        <label>Unit<select name="unit" [(ngModel)]="unit"><option value="litre">Litre</option><option value="kg">Kg</option><option value="piece">Piece</option><option value="can">Can</option><option value="pack">Pack</option></select></label>
-        <label>Default rate (₹)<input name="productRate" type="number" [(ngModel)]="productRate" min="0" step="0.01" required /></label>
+        <label
+          >Name<input name="productName" [(ngModel)]="productName" required maxlength="120"
+        /></label>
+        <label
+          >Unit<select name="unit" [(ngModel)]="unit">
+            <option value="litre">Litre</option>
+            <option value="kg">Kg</option>
+            <option value="piece">Piece</option>
+            <option value="can">Can</option>
+            <option value="pack">Pack</option>
+          </select></label
+        >
+        <label
+          >Default rate (₹)<input
+            name="productRate"
+            type="number"
+            [(ngModel)]="productRate"
+            min="0"
+            step="0.01"
+            required
+        /></label>
       </div>
       <button class="btn" [disabled]="svc.busy()">Save product</button>
     </form>
@@ -153,82 +255,199 @@
           <span class="eyebrow">{{ editingId ? 'UPDATE' : 'NEW' }}</span>
           <h2>{{ editingId ? 'Edit expense' : 'Add expense' }}</h2>
         </div>
-        <button type="button" class="text-btn" (click)="showExpense=false; editingId=null">Close</button>
+        <button type="button" class="btn ghost" (click)="showExpense = false; editingId = null">
+          Close
+        </button>
       </div>
       <div class="form-grid">
-        <label>What was it?<input name="title" [(ngModel)]="draft.title" required maxlength="120" /></label>
-        <label>Date<input name="date" type="date" [(ngModel)]="draft.date" min="2000-01-01" [max]="today" required /></label>
-        <label>Category<select name="category" [(ngModel)]="draft.category">@for (c of svc.categories; track c) { <option>{{ c }}</option> }</select></label>
-        <label>Product — optional
+        <label
+          >What was it?<input name="title" [(ngModel)]="draft.title" required maxlength="120"
+        /></label>
+        <label
+          >Date<input
+            name="date"
+            type="date"
+            [(ngModel)]="draft.date"
+            min="2000-01-01"
+            [max]="today"
+            required
+        /></label>
+        <label
+          >Category<select name="category" [(ngModel)]="draft.category">
+            @for (c of svc.categories; track c) {
+              <option>{{ c }}</option>
+            }
+          </select></label
+        >
+        <label
+          >Product — optional
           <select name="productId" [(ngModel)]="draft.productId" (ngModelChange)="selectProduct()">
             <option [ngValue]="null">Just an amount</option>
-            @for (p of svc.data().products; track p.id) { <option [ngValue]="p.id">{{ p.name }}</option> }
+            @for (p of svc.data().products; track p.id) {
+              <option [ngValue]="p.id">{{ p.name }}</option>
+            }
           </select>
         </label>
         @if (draft.productId) {
-          <label>Quantity<input name="quantity" type="number" [(ngModel)]="draft.quantity" (ngModelChange)="calculate()" min="0.001" step="0.001" required /></label>
-          <label>Rate (₹)<input name="rate" type="number" [(ngModel)]="draft.rate" (ngModelChange)="calculate()" min="0" step="0.01" required /></label>
+          <label
+            >Quantity<input
+              name="quantity"
+              type="number"
+              [(ngModel)]="draft.quantity"
+              (ngModelChange)="calculate()"
+              min="0.001"
+              step="0.001"
+              required
+          /></label>
+          <label
+            >Rate (₹)<input
+              name="rate"
+              type="number"
+              [(ngModel)]="draft.rate"
+              (ngModelChange)="calculate()"
+              min="0"
+              step="0.01"
+              required
+          /></label>
         }
-        <label>Amount (₹)<input name="amount" type="number" [(ngModel)]="draft.amount" [readOnly]="!!draft.productId" min="0.01" step="0.01" required /></label>
-        <label>Supplier<input name="supplier" [(ngModel)]="draft.supplier" maxlength="120" /></label>
+        <label
+          >Amount (₹)<input
+            name="amount"
+            type="number"
+            [(ngModel)]="draft.amount"
+            [readOnly]="!!draft.productId"
+            min="0.01"
+            step="0.01"
+            required
+        /></label>
+        <label
+          >Supplier<input name="supplier" [(ngModel)]="draft.supplier" maxlength="120"
+        /></label>
         <label>Note<input name="note" [(ngModel)]="draft.note" maxlength="1000" /></label>
         @if (!editingId) {
-          <label>Payment mode<select name="mode" [(ngModel)]="draft.mode"><option value="cash">Cash</option><option value="upi">UPI</option><option value="other">Other</option></select></label>
+          <label
+            >Payment mode<select name="mode" [(ngModel)]="draft.mode">
+              <option value="cash">Cash</option>
+              <option value="upi">UPI</option>
+              <option value="other">Other</option>
+            </select></label
+          >
         }
       </div>
       @if (!editingId) {
         <div class="payment-options">
-          <label class="check"><input type="checkbox" name="paidNow" [(ngModel)]="paidNow" /> Paid in full</label>
+          <label class="check"
+            ><input type="checkbox" name="paidNow" [(ngModel)]="paidNow" /> Paid in full</label
+          >
           @if (!paidNow) {
-            <label>Already paid (₹)<input name="paid" type="number" [(ngModel)]="draft.paid" min="0" [max]="draft.amount" step="0.01" /></label>
+            <label
+              >Already paid (₹)<input
+                name="paid"
+                type="number"
+                [(ngModel)]="draft.paid"
+                min="0"
+                [max]="draft.amount"
+                step="0.01"
+            /></label>
           }
         </div>
       } @else {
-        <p class="muted">Editing updates the purchase only. Use Pay on the row to record payments.</p>
+        <p class="muted">
+          Editing updates the purchase only. Use Pay on the row to record payments.
+        </p>
       }
-      <button class="btn" [disabled]="svc.busy()">{{ editingId ? 'Save changes' : 'Save expense' }}</button>
+      <button class="btn" [disabled]="svc.busy()">
+        {{ editingId ? 'Save changes' : 'Save expense' }}
+      </button>
     </form>
   }
 
   <div class="workspace-grid">
     <section class="ledger-panel">
       <div class="section-heading">
-        <div><span class="eyebrow">LEDGER</span><h2>Expenses <span class="count">{{ svc.rows().length }}</span></h2></div>
+        <div>
+          <span class="eyebrow">LEDGER</span>
+          <h2>
+            Expenses <span class="count">{{ svc.rows().length }}</span>
+          </h2>
+        </div>
       </div>
       <div class="filte₹">
-        <input type="search" placeholder="Search…" [ngModel]="svc.search()" (ngModelChange)="svc.search.set($event)" />
+        <input
+          type="search"
+          placeholder="Search…"
+          [ngModel]="svc.search()"
+          (ngModelChange)="svc.search.set($event)"
+        />
         <select [ngModel]="svc.product()" (ngModelChange)="svc.product.set(+$event)">
           <option [ngValue]="0">All products</option>
-          @for (p of svc.data().products; track p.id) { <option [ngValue]="p.id">{{ p.name }}</option> }
+          @for (p of svc.data().products; track p.id) {
+            <option [ngValue]="p.id">{{ p.name }}</option>
+          }
         </select>
         <select [ngModel]="svc.category()" (ngModelChange)="svc.category.set($event)">
           <option value="">All categories</option>
-          @for (c of svc.categories; track c) { <option>{{ c }}</option> }
+          @for (c of svc.categories; track c) {
+            <option>{{ c }}</option>
+          }
         </select>
       </div>
-      <label class="check filter-check"><input type="checkbox" [ngModel]="svc.unpaidOnly()" (ngModelChange)="svc.unpaidOnly.set($event)" /> Only unpaid</label>
+      <label class="check filter-check"
+        ><input
+          type="checkbox"
+          [ngModel]="svc.unpaidOnly()"
+          (ngModelChange)="svc.unpaidOnly.set($event)"
+        />
+        Only unpaid</label
+      >
 
-      @if (svc.loading()) { <p class="empty">Updating…</p> }
+      @if (svc.loading()) {
+        <p class="empty">Updating…</p>
+      }
       @if (!svc.rows().length) {
-        <div class="empty-state"><h3>No expenses this month</h3><button class="btn" type="button" (click)="openNewExpense()">Add expense</button></div>
+        <div class="empty-state">
+          <h3>No expenses this month</h3>
+          <button class="btn" type="button" (click)="openNewExpense()">Add expense</button>
+        </div>
       } @else {
         <div class="table-wrap">
           <table class="data">
-            <thead><tr><th>Expense</th><th>Date</th><th>Amount</th><th>Status</th><th></th></tr></thead>
+            <thead>
+              <tr>
+                <th>Expense</th>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th></th>
+              </tr>
+            </thead>
             <tbody>
               @for (e of svc.rows(); track e.id) {
                 <tr>
                   <td>
                     <strong>{{ e.title }}</strong>
-                    <small>{{ e.category }}@if (e.supplier) { · {{ e.supplier }} }</small>
+                    <small
+                      >{{ e.category }}
+                      @if (e.supplier) {
+                        · {{ e.supplier }}
+                      }
+                    </small>
                   </td>
                   <td>{{ e.date }}</td>
-                  <td>₹{{ e.amount | number:'1.2-2' }}</td>
-                  <td><span class="status" [class.settled]="svc.due(e)===0">{{ svc.due(e)===0 ? 'Paid' : '₹' + (svc.due(e) | number:'1.2-2') + ' due' }}</span></td>
+                  <td>₹{{ e.amount | number: '1.2-2' }}</td>
+                  <td>
+                    <span class="status" [class.settled]="svc.due(e) === 0">{{
+                      svc.due(e) === 0 ? 'Paid' : '₹' + (svc.due(e) | number: '1.2-2') + ' due'
+                    }}</span>
+                  </td>
                   <td class="row-actions">
-                    <button type="button" class="text-btn" (click)="beginEdit(e)">Edit</button>
-                    <button type="button" class="text-btn danger" (click)="removeExpense(e)">Remove</button>
-                    @if (svc.due(e) > 0) { <button type="button" class="text-btn" (click)="beginPayment(e)">Pay</button> }
+                    <button type="button" class="btn ghost" (click)="beginEdit(e)">Edit</button>
+                    <button type="button" class="btn ghost" (click)="removeExpense(e)">
+                      Remove
+                    </button>
+                    @if (svc.due(e) > 0) {
+                      <button type="button" class="btn ghost" (click)="beginPayment(e)">Pay</button>
+                    }
                   </td>
                 </tr>
               }
@@ -243,20 +462,36 @@
         <span class="eyebrow">WHERE IT WENT</span>
         <h2>By category</h2>
         @for (c of svc.breakdown(); track c.name) {
-          <div class="category-row"><div><span>{{ c.name }}</span><strong>₹{{ c.amount | number:'1.0-0' }}</strong></div>
-            <div class="bar"><i [style.width.%]="svc.totals().purchases ? c.amount / svc.totals().purchases * 100 : 0"></i></div>
+          <div class="category-row">
+            <div>
+              <span>{{ c.name }}</span
+              ><strong>₹{{ c.amount | number: '1.0-0' }}</strong>
+            </div>
+            <div class="bar">
+              <i
+                [style.width.%]="
+                  svc.totals().purchases ? (c.amount / svc.totals().purchases) * 100 : 0
+                "
+              ></i>
+            </div>
           </div>
-        } @empty { <p class="muted">No spend in this filter yet.</p> }
+        } @empty {
+          <p class="muted">No spend in this filter yet.</p>
+        }
       </section>
       <section class="insight-card pending-card">
         <span class="eyebrow">STILL DUE</span>
         <h2>{{ svc.outstanding().length }} open</h2>
         @for (e of svc.outstanding(); track e.id) {
           <button type="button" class="pending-row" (click)="beginPayment(e)">
-            <span>{{ e.title }}<small>{{ e.date }}</small></span>
-            <strong>₹{{ svc.due(e) | number:'1.2-2' }}</strong>
+            <span
+              >{{ e.title }}<small>{{ e.date }}</small></span
+            >
+            <strong>₹{{ svc.due(e) | number: '1.2-2' }}</strong>
           </button>
-        } @empty { <p class="all-clear">All settled.</p> }
+        } @empty {
+          <p class="all-clear">All settled.</p>
+        }
       </section>
     </aside>
   </div>
@@ -264,12 +499,38 @@
   @if (paymentExpense; as e) {
     <section class="card entry-form" id="payment-form">
       <form (ngSubmit)="savePayment()">
-        <div class="section-heading"><h2>Record payment — {{ e.title }}</h2><button type="button" class="text-btn" (click)="paymentExpense=null">Close</button></div>
-        <p class="muted">₹{{ svc.due(e) | number:'1.2-2' }} outstanding.</p>
+        <div class="section-heading">
+          <h2>Record payment — {{ e.title }}</h2>
+          <button type="button" class="btn ghost" (click)="paymentExpense = null">Close</button>
+        </div>
+        <p class="muted">₹{{ svc.due(e) | number: '1.2-2' }} outstanding.</p>
         <div class="form-grid">
-          <label>Amount<input name="paymentAmount" type="number" [(ngModel)]="paymentAmount" min="0.01" [max]="svc.due(e)" step="0.01" required /></label>
-          <label>Paid on<input name="paymentDate" type="date" [(ngModel)]="paymentDate" [min]="e.date" [max]="today" required /></label>
-          <label>Mode<select name="paymentMode" [(ngModel)]="paymentMode"><option value="cash">Cash</option><option value="upi">UPI</option><option value="other">Other</option></select></label>
+          <label
+            >Amount<input
+              name="paymentAmount"
+              type="number"
+              [(ngModel)]="paymentAmount"
+              min="0.01"
+              [max]="svc.due(e)"
+              step="0.01"
+              required
+          /></label>
+          <label
+            >Paid on<input
+              name="paymentDate"
+              type="date"
+              [(ngModel)]="paymentDate"
+              [min]="e.date"
+              [max]="today"
+              required
+          /></label>
+          <label
+            >Mode<select name="paymentMode" [(ngModel)]="paymentMode">
+              <option value="cash">Cash</option>
+              <option value="upi">UPI</option>
+              <option value="other">Other</option>
+            </select></label
+          >
         </div>
         <button class="btn" [disabled]="svc.busy()">Save payment</button>
       </form>
@@ -281,17 +542,26 @@
     @for (p of svc.data().payments; track p.id) {
       <button type="button" class="history-row" (click)="svc.receipt.set(p)">
         <span>{{ svc.expense(p.expenseId)?.title }} · {{ p.date }}</span>
-        <strong>₹{{ p.amount | number:'1.2-2' }}</strong>
+        <strong>₹{{ p.amount | number: '1.2-2' }}</strong>
       </button>
-    } @empty { <p class="muted">No payments yet.</p> }
+    } @empty {
+      <p class="muted">No payments yet.</p>
+    }
   </details>
 
   @if (svc.receipt(); as p) {
     <section class="card pe₹onal-receipt">
-      <div class="section-heading"><div><span class="eyebrow">HP-{{ p.id }}</span><h2>Payment record</h2></div>
-        <button type="button" class="text-btn noprint" (click)="svc.receipt.set(null)">Close</button></div>
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">HP-{{ p.id }}</span>
+          <h2>Payment record</h2>
+        </div>
+        <button type="button" class="text-btn noprint" (click)="svc.receipt.set(null)">
+          Close
+        </button>
+      </div>
       <p>{{ svc.expense(p.expenseId)?.title }} · {{ p.date }}</p>
-      <strong class="receipt-amount">₹{{ p.amount | number:'1.2-2' }}</strong>
+      <strong class="receipt-amount">₹{{ p.amount | number: '1.2-2' }}</strong>
       <div class="actions noprint">
         <button type="button" class="btn" (click)="svc.downloadReceipt()">Download</button>
         <button type="button" class="btn secondary" (click)="svc.print()">Print</button>

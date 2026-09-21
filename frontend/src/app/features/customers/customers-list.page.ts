@@ -10,7 +10,7 @@ import { pageCount, paginate } from '../../shared/pagination/paginate';
   standalone: true,
   imports: [RouterLink, DecimalPipe, FormsModule],
   templateUrl: './customers-list.page.html',
-  styleUrl: './customers-list.page.scss'
+  styleUrl: './customers-list.page.scss',
 })
 export class CustomersListPage implements OnInit {
   readonly svc = inject(CustomersService);
@@ -27,7 +27,7 @@ export class CustomersListPage implements OnInit {
       (c) =>
         c.name.toLowerCase().includes(term) ||
         (c.phone ?? '').toLowerCase().includes(term) ||
-        (c.address ?? '').toLowerCase().includes(term)
+        (c.address ?? '').toLowerCase().includes(term),
     );
   });
 

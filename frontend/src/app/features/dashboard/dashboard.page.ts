@@ -8,7 +8,7 @@ import { DashboardService } from './dashboard.service';
   standalone: true,
   imports: [RouterLink, DecimalPipe],
   templateUrl: './dashboard.page.html',
-  styleUrl: './dashboard.page.scss'
+  styleUrl: './dashboard.page.scss',
 })
 export class DashboardPage implements OnInit {
   readonly svc = inject(DashboardService);

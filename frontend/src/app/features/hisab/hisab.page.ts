@@ -8,7 +8,7 @@ import { HisabService } from './hisab.service';
   standalone: true,
   imports: [FormsModule, DecimalPipe],
   templateUrl: './hisab.page.html',
-  styleUrl: './hisab.page.scss'
+  styleUrl: './hisab.page.scss',
 })
 export class HisabPage implements OnInit {
   readonly svc = inject(HisabService);

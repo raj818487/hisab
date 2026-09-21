@@ -23,7 +23,7 @@ export class CustomersService {
         this.customers.set([]);
         this.error.set(readApiError(e, 'Failed to load customers'));
         this.loading.set(false);
-      }
+      },
     });
   }
 
@@ -48,7 +48,7 @@ export class CustomersService {
       address?: string | null;
       defaultRate: number;
       isActive: boolean;
-    }
+    },
   ): Observable<Customer> {
     return this.api.updateCustomer(id, body).pipe(tap(() => this.loadAll()));
   }

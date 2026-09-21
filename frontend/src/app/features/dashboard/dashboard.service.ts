@@ -11,18 +11,22 @@ export class DashboardService {
   readonly loading = signal(false);
   readonly error = signal('');
 
-  readonly todayTaken = computed(() =>
-    this.board().filter((r) => (r.entryId != null || r.quantityLitres != null) && (r.quantityLitres ?? 0) > 0).length
+  readonly todayTaken = computed(
+    () =>
+      this.board().filter(
+        (r) => (r.entryId != null || r.quantityLitres != null) && (r.quantityLitres ?? 0) > 0,
+      ).length,
   );
-  readonly todaySkip = computed(() =>
-    this.board().filter(
-      (r) =>
-        (r.entryId != null || r.quantityLitres != null) &&
-        ((r.quantityLitres ?? 0) === 0 || (r.note ?? '').toLowerCase().includes('skip'))
-    ).length
+  readonly todaySkip = computed(
+    () =>
+      this.board().filter(
+        (r) =>
+          (r.entryId != null || r.quantityLitres != null) &&
+          ((r.quantityLitres ?? 0) === 0 || (r.note ?? '').toLowerCase().includes('skip')),
+      ).length,
   );
-  readonly todayPending = computed(() =>
-    this.board().filter((r) => r.entryId == null && r.quantityLitres == null).length
+  readonly todayPending = computed(
+    () => this.board().filter((r) => r.entryId == null && r.quantityLitres == null).length,
   );
   readonly todayTotal = computed(() => this.board().length);
 
@@ -51,11 +55,11 @@ export class DashboardService {
           totalDelivered: 0,
           totalPaid: 0,
           totalDue: 0,
-          customers: []
+          customers: [],
         });
         this.error.set(readApiError(e, 'Could not load month summary (API offline?).'));
         done();
-      }
+      },
     });
 
     this.api.getDayBoard(date).subscribe({
@@ -66,10 +70,10 @@ export class DashboardService {
       error: (e) => {
         this.board.set([]);
         if (!this.error()) {
-          this.error.set(readApiError(e, 'Could not load today\'s day-board.'));
+          this.error.set(readApiError(e, "Could not load today's day-board."));
         }
         done();
-      }
+      },
     });
   }
 }

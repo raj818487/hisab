@@ -10,7 +10,7 @@ import { ToastService } from '../../shared/toast/toast.service';
   standalone: true,
   imports: [FormsModule, DecimalPipe],
   templateUrl: './daily.page.html',
-  styleUrl: './daily.page.scss'
+  styleUrl: './daily.page.scss',
 })
 export class DailyPage implements OnInit {
   readonly svc = inject(DailyService);
@@ -48,7 +48,7 @@ export class DailyPage implements OnInit {
         this.toast.success(`Saved ${row.customerName}`);
         this.svc.load();
       },
-      error: () => this.toast.error(this.svc.msg() || 'Save failed')
+      error: () => this.toast.error(this.svc.msg() || 'Save failed'),
     });
   }
 }

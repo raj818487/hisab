@@ -11,7 +11,7 @@ import { ToastService } from '../../shared/toast/toast.service';
   standalone: true,
   imports: [FormsModule, RouterLink, DecimalPipe],
   templateUrl: './payments.page.html',
-  styleUrl: './payments.page.scss'
+  styleUrl: './payments.page.scss',
 })
 export class PaymentsPage implements OnInit {
   readonly svc = inject(PaymentsService);
@@ -50,7 +50,7 @@ export class PaymentsPage implements OnInit {
         amount: this.amount,
         mode: this.mode,
         paidOn: this.paidOn,
-        note: this.note || null
+        note: this.note || null,
       })
       .subscribe({
         next: (p) => {
@@ -62,7 +62,7 @@ export class PaymentsPage implements OnInit {
           this.error.set(msg);
           this.toast.error(msg);
           this.saving.set(false);
-        }
+        },
       });
   }
 }

@@ -17,7 +17,7 @@ interface CalCell {
   standalone: true,
   imports: [FormsModule, DecimalPipe],
   templateUrl: './personal.page.html',
-  styleUrl: './personal.page.scss'
+  styleUrl: './personal.page.scss',
 })
 export class PersonalPage implements OnInit {
   readonly svc = inject(PersonalService);
@@ -43,8 +43,9 @@ export class PersonalPage implements OnInit {
   calMonth = signal(localDate().slice(0, 7));
   selectedDay = signal<string | null>(null);
 
-  readonly calProduct = computed(() =>
-    this.svc.data().products.find(p => p.id === this.calProductId()) ?? null);
+  readonly calProduct = computed(
+    () => this.svc.data().products.find((p) => p.id === this.calProductId()) ?? null,
+  );
 
   readonly calCells = computed(() => {
     const ym = this.calMonth();
@@ -53,8 +54,9 @@ export class PersonalPage implements OnInit {
     const startPad = first.getDay();
     const daysInMonth = new Date(y, m, 0).getDate();
     const pid = this.calProductId();
-    const expenses = this.svc.data().expenses.filter(e =>
-      e.date.startsWith(ym) && (!pid || e.productId === pid));
+    const expenses = this.svc
+      .data()
+      .expenses.filter((e) => e.date.startsWith(ym) && (!pid || e.productId === pid));
     const byDate = new Map<string, Expense[]>();
     for (const e of expenses) {
       const list = byDate.get(e.date) ?? [];
@@ -80,10 +82,12 @@ export class PersonalPage implements OnInit {
     const day = this.selectedDay();
     if (!day) return [] as Expense[];
     const pid = this.calProductId();
-    return this.svc.data().expenses.filter(e => e.date === day && (!pid || e.productId === pid));
+    return this.svc.data().expenses.filter((e) => e.date === day && (!pid || e.productId === pid));
   });
 
-  ngOnInit(): void { void this.svc.init(); }
+  ngOnInit(): void {
+    void this.svc.init();
+  }
 
   async logout(): Promise<void> {
     await this.svc.logout();
@@ -112,12 +116,12 @@ export class PersonalPage implements OnInit {
       amount: 0,
       paid: 0,
       mode: 'cash',
-      note: ''
+      note: '',
     };
   }
 
   selectProduct(): void {
-    const p = this.svc.data().products.find(x => x.id === Number(this.draft.productId));
+    const p = this.svc.data().products.find((x) => x.id === Number(this.draft.productId));
     if (p) {
       this.draft.title = p.name;
       this.draft.rate = p.rate;
@@ -127,7 +131,8 @@ export class PersonalPage implements OnInit {
 
   calculate(): void {
     if (this.draft.productId) {
-      this.draft.amount = Math.round((this.draft.quantity * this.draft.rate + Number.EPSILON) * 100) / 100;
+      this.draft.amount =
+        Math.round((this.draft.quantity * this.draft.rate + Number.EPSILON) * 100) / 100;
     }
   }
 
@@ -151,17 +156,21 @@ export class PersonalPage implements OnInit {
       amount: e.amount,
       paid: 0,
       mode: 'cash',
-      note: e.note ?? ''
+      note: e.note ?? '',
     };
     this.paidNow = false;
     this.showExpense = true;
-    setTimeout(() => document.getElementById('expense-form')?.scrollIntoView({ behavior: 'smooth', block: 'center' }));
+    setTimeout(() =>
+      document
+        .getElementById('expense-form')
+        ?.scrollIntoView({ behavior: 'smooth', block: 'center' }),
+    );
   }
 
   async saveExpense(): Promise<void> {
     const draft = {
       ...this.draft,
-      paid: this.editingId ? 0 : (this.paidNow ? this.draft.amount : this.draft.paid)
+      paid: this.editingId ? 0 : this.paidNow ? this.draft.amount : this.draft.paid,
     };
     const ok = this.editingId
       ? await this.svc.updateExpense(this.editingId, draft)
@@ -177,7 +186,8 @@ export class PersonalPage implements OnInit {
   async removeExpense(e: Expense): Promise<void> {
     const due = this.svc.due(e);
     const hint = due > 0 ? ` (â‚¹${due.toFixed(2)} still due)` : '';
-    if (!confirm(`Remove "${e.title}" on ${e.date}${hint}? This also removes its payments.`)) return;
+    if (!confirm(`Remove "${e.title}" on ${e.date}${hint}? This also removes its payments.`))
+      return;
     if (await this.svc.deleteExpense(e.id)) {
       if (this.editingId === e.id) {
         this.showExpense = false;
@@ -200,7 +210,7 @@ export class PersonalPage implements OnInit {
 
   async removeProduct(p: Product): Promise<void> {
     if (!confirm(`Remove product "${p.name}"?`)) return;
-    if (await this.svc.deleteProduct(p.id) && this.calProductId() === p.id) {
+    if ((await this.svc.deleteProduct(p.id)) && this.calProductId() === p.id) {
       this.calProductId.set(0);
     }
   }
@@ -209,11 +219,23 @@ export class PersonalPage implements OnInit {
     this.paymentExpense = e;
     this.paymentAmount = this.svc.due(e);
     this.paymentDate = this.today;
-    setTimeout(() => document.getElementById('payment-form')?.scrollIntoView({ behavior: 'smooth', block: 'center' }));
+    setTimeout(() =>
+      document
+        .getElementById('payment-form')
+        ?.scrollIntoView({ behavior: 'smooth', block: 'center' }),
+    );
   }
 
   async savePayment(): Promise<void> {
-    if (this.paymentExpense && await this.svc.pay(this.paymentExpense.id, this.paymentDate, this.paymentAmount, this.paymentMode)) {
+    if (
+      this.paymentExpense &&
+      (await this.svc.pay(
+        this.paymentExpense.id,
+        this.paymentDate,
+        this.paymentAmount,
+        this.paymentMode,
+      ))
+    ) {
       this.paymentExpense = null;
     }
   }
@@ -263,12 +285,16 @@ export class PersonalPage implements OnInit {
       quantity: 1,
       rate: p.rate,
       amount: p.rate,
-      category: 'Food & groceries'
+      category: 'Food & groceries',
     };
     this.paidNow = true;
     this.showExpense = true;
     this.calMonth.set(day.slice(0, 7));
     this.selectedDay.set(day);
-    setTimeout(() => document.getElementById('expense-form')?.scrollIntoView({ behavior: 'smooth', block: 'center' }));
+    setTimeout(() =>
+      document
+        .getElementById('expense-form')
+        ?.scrollIntoView({ behavior: 'smooth', block: 'center' }),
+    );
   }
 }

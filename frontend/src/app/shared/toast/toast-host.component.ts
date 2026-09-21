@@ -18,7 +18,7 @@ import { ToastService } from './toast.service';
         </div>
       }
     </div>
-  `
+  `,
 })
 export class ToastHostComponent {
   readonly toast = inject(ToastService);
